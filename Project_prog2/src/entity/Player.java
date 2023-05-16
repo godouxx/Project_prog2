@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
+import tile.Tile;
 
 /**
  * Dï¿½fintition du comportement d'un joueur
@@ -19,6 +20,9 @@ public class Player extends Entity {
 
 	GamePanel m_gp;
 	KeyHandler m_keyH;
+	BufferedImage heart_empty;
+	BufferedImage heart_half;
+	BufferedImage heart_full;
 
 	/**
 	 * Constructeur de Player
@@ -32,7 +36,11 @@ public class Player extends Entity {
 		this.setDefaultValues();
 		this.getPlayerImage();
 		this.area_collision=new Rectangle(0,0,48,48);
+		this.pvMAX = 6;
+		this.pvACTUAL = this.pvMAX;
+		this.getHeartImage();
 	}
+	
 
 	/**
 	 * Initialisation des donnï¿½es membres avec des valeurs par dï¿½faut
@@ -44,7 +52,7 @@ public class Player extends Entity {
 	}
 
 	/**
-	 * Réupération de l'image du personnage
+	 * Rï¿½upï¿½ration de l'image du personnage
 	 */
 	public void getPlayerImage() {
 		// gestion des expections
@@ -54,12 +62,27 @@ public class Player extends Entity {
 			e.printStackTrace();
 		}
 	}
-
+	
+	
+	public void getHeartImage() {
+		try {
+			heart_empty = ImageIO.read(getClass().getResource("/maps/heart_red_empty.png"));
+			
+			heart_half = ImageIO.read(getClass().getResource("/maps/heart_red_half.png"));
+			
+			heart_full = ImageIO.read(getClass().getResource("/maps/heart_red_full.png"));
+					
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Mise ï¿½ jour des donnï¿½es du joueur
 	 */
 	@Override
 	public void update() {
+		
 	    boolean goUp = false;
 	    boolean goDown = false;
 	    boolean goLeft = false;
@@ -83,10 +106,10 @@ public class Player extends Entity {
 	        
 	        
 	        collision=false;
-	        m_gp.colisionVerif.checkTile(this);
+	       // m_gp.colisionVerif.checkTile(this);
 	    }
 
-	    // Déplacement diagonal
+	    // Dï¿½placement diagonal
 	    if (goUp && goLeft) {
 	        goUpLeftNext();
 	    } else if (goUp && goRight) {
@@ -96,7 +119,7 @@ public class Player extends Entity {
 	    } else if (goDown && goRight) {
 	        goDownRightNext();
 	    }
-	    // Déplacement vertical ou horizontal
+	    // Dï¿½placement vertical ou horizontal
 	    else if (goUp) {
 	        goUpNext();
 	    } else if (goDown) {
@@ -159,6 +182,20 @@ public class Player extends Entity {
 		// affiche le personnage avec l'image "image", avec les coordonnï¿½es x et y, et
 		// de taille tileSize (16x16) sans ï¿½chelle, et 48x48 avec ï¿½chelle)
 		a_g2.drawImage(l_image, m_x, m_y, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+		
+		switch(this.getPvACTUAL()) {
+		case 6:
+			a_g2.drawImage(heart_full , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_full , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_full , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		default:
+			a_g2.drawImage(heart_empty , 20, 20, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+	
+		}
+		
+		
+
 	}
 
 }

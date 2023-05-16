@@ -126,11 +126,7 @@ public class GamePanel extends JPanel implements Runnable {
 	 * Mise � jour des donn�es des entit�s
 	 */
 	public void update() {
-		m_player.update();
-		
-		
-		
-		
+		m_player.update();	
 	}
 
 	/**
