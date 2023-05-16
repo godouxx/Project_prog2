@@ -39,7 +39,7 @@ public class Player extends Entity {
 		this.m_keyH = a_keyH;
 		this.setDefaultValues();
 		this.getPlayerImage();
-		this.area_collision = new Rectangle(0, 0, 46, 46);
+		this.area_collision = new Rectangle(0, 0, 40, 40);
 		this.pvMAX = 6;
 		this.pvACTUAL = this.pvMAX;
 		this.getHeartImage();
