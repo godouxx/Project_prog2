@@ -1,6 +1,13 @@
 package main;
 
 import javax.swing.JFrame;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 
@@ -11,13 +18,13 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		//Fenêtre de lancement du jeu
+		//Fenï¿½tre de lancement du jeu
 		JFrame window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
 		window.setTitle("ESIR1 - Projet Prog");
 		
-		//Ajout du panel du jeu et démarrage du thread principal
+		//Ajout du panel du jeu et dï¿½marrage du thread principal
 		GamePanel gamePanel = new GamePanel();
 		window.add(gamePanel);
 		window.pack();
@@ -25,6 +32,16 @@ public class Main {
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 		gamePanel.startGameThread();	
+		
+		try {
+            File fichierAudio = new File("C:\\Users\\flavi\\git\\Project_prog2\\Project_prog2\\res\\sons/Retro_Funk.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(fichierAudio);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
 
 	}
 
