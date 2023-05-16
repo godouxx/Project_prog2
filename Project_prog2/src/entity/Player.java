@@ -35,7 +35,7 @@ public class Player extends Entity {
 		this.m_keyH = a_keyH;
 		this.setDefaultValues();
 		this.getPlayerImage();
-		this.area_collision=new Rectangle(0,0,48,48);
+		this.area_collision=new Rectangle(0,0,46,46);
 		this.pvMAX = 6;
 		this.pvACTUAL = this.pvMAX;
 		this.getHeartImage();
@@ -83,10 +83,7 @@ public class Player extends Entity {
 	@Override
 	public void update() {
 		
-	    boolean goUp = false;
-	    boolean goDown = false;
-	    boolean goLeft = false;
-	    boolean goRight = false;
+	    
 
 	    for (int element : m_keyH.liste) {
 	        System.out.println(element);
@@ -106,30 +103,41 @@ public class Player extends Entity {
 	        
 	        
 	        collision=false;
-	       // m_gp.colisionVerif.checkTile(this);
-	      //  m_gp.colisionVerif.checkTile(this);
-	    }
+	        this.m_gp.colisionVerif.checkTile(this);
 
-	    // Dï¿½placement diagonal
-	    if (goUp && goLeft) {
-	        goUpLeftNext();
-	    } else if (goUp && goRight) {
-	        goUpRightNext();
-	    } else if (goDown && goLeft) {
-	        goDownLeftNext();
-	    } else if (goDown && goRight) {
-	        goDownRightNext();
 	    }
-	    // Dï¿½placement vertical ou horizontal
-	    else if (goUp) {
-	        goUpNext();
-	    } else if (goDown) {
-	        goDownNext();
-	    } else if (goLeft) {
-	        goLeftNext();
-	    } else if (goRight) {
-	        goRightNext();
+	   
+	    if(collision==false) {
+	    	
+	    	 // Déplacement diagonal
+		    
+		    if (goUp && goLeft) {
+		        goUpLeftNext();
+		    } else if (goUp && goRight) {
+		        goUpRightNext();
+		    } else if (goDown && goLeft) {
+		        goDownLeftNext();
+		    } else if (goDown && goRight) {
+		        goDownRightNext();
+		    }
+		    // Dï¿½placement vertical ou horizontal
+		    else if (goUp) {
+		        goUpNext();
+		    } else if (goDown) {
+		        goDownNext();
+		    } else if (goLeft) {
+		        goLeftNext();
+		    } else if (goRight) {
+		        goRightNext();
+		    }
+		    
 	    }
+	   
+	    
+	    goUp=false;
+	    goDown=false;
+	    goLeft=false;
+	    goRight=false;
 	}
 
 

@@ -18,9 +18,9 @@ import main.GamePanel;
  */
 public class TileManager {
 	GamePanel m_gp;			//panel du jeu principal
-	Tile[] m_tile;			//tableau de toutes les tiles possibles dans le jeu
+	public Tile[] m_tile;			//tableau de toutes les tiles possibles dans le jeu
 	int m_maxTiles = 10;	//nombre maximum de tiles chargeable dans le jeu
-	int m_mapTileNum[][];	//répartition des tiles dans la carte du jeu
+	public int m_mapTileNum[][];	//répartition des tiles dans la carte du jeu
 	
 	/**
 	 * Constructeur

@@ -17,8 +17,12 @@ public abstract class Entity {
 	protected int pvACTUAL;
 	protected int degat;
 	public Rectangle area_collision;
-	protected boolean collision;
+	public boolean collision;
 	public String direction;
+	public boolean goUp = false;
+	public boolean goDown = false;
+	public boolean goLeft = false;
+	public boolean goRight = false;
 
 	public int getM_x() {
 		return m_x;
