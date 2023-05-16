@@ -34,7 +34,7 @@ public class Main {
 		gamePanel.startGameThread();	
 		
 		try {
-            File fichierAudio = new File("C:\\Users\\flavi\\git\\Project_prog2\\Project_prog2\\res\\sons/Retro_Funk.wav");
+            File fichierAudio = new File("res\\sons/Retro_Funk.wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(fichierAudio);
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
