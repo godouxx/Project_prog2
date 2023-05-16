@@ -30,7 +30,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COL; // 768 pixels
 	public final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREE_ROW; // 576 pixels
 
-	//paramètres du monde :
+	//paramï¿½tres du monde :
 	public final int maxWorldCol=32;
 	public final int maxWorldRow=24;
 	public final int worldWidth=TILE_SIZE*maxWorldCol;
@@ -137,6 +137,7 @@ public class GamePanel extends JPanel implements Runnable {
 		m_player.update();
 	}
 
+	
 	/**
 	 * Affichage des elements
 	 */
