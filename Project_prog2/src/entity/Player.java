@@ -164,21 +164,7 @@ public class Player extends Entity {
 		goRight = false;
 	}
 
-	public void goUpNext() {
-		this.m_y -= 1 * m_speed;
-	}
-
-	public void goDownNext() {
-		this.m_y += 1 * m_speed;
-	}
 	
-	public void goLeftNext() {
-		this.m_x -= 1 * m_speed;
-	}
-
-	public void goRightNext() {
-		this.m_x += 1 * m_speed;
-	}
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;
