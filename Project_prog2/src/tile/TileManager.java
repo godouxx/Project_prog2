@@ -21,7 +21,7 @@ public class TileManager {
 	Tile[] m_tile;			//tableau de toutes les tiles possibles dans le jeu
 	int m_maxTiles = 10;	//nombre maximum de tiles chargeable dans le jeu
 	int m_mapTileNum[][];	//r�partition des tiles dans la carte du jeu
-	int test;
+	
 	/**
 	 * Constructeur
 	 * @param gp
