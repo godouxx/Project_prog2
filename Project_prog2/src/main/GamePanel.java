@@ -153,10 +153,10 @@ public class GamePanel extends JPanel implements Runnable {
 		if (m_player.getPvACTUAL() == 0) {
 			m_player.over(g2);
 		} else {
-			m_tileM.draw_mini_map(g2);
-			m_tileM.point_rouge(g2);
 			m_tileM.draw(g2);
 			m_player.draw(g2);
+			m_tileM.draw_mini_map(g2);
+			m_tileM.point_rouge(g2 , m_player);
 			drawObjets(g2);
 			drawMonster(g2);
 			g2.dispose();

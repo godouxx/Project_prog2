@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import entity.Player;
 import main.GamePanel;
 
 /**
@@ -21,7 +22,7 @@ public class TileManager {
 	GamePanel m_gp;			//panel du jeu principal
 	public Tile[] m_tile;			//tableau de toutes les tiles possibles dans le jeu
 	int m_maxTiles = 10;	//nombre maximum de tiles chargeable dans le jeu
-	public int m_mapTileNum[][];	//répartition des tiles dans la carte du jeu
+	public int m_mapTileNum[][];	//rï¿½partition des tiles dans la carte du jeu
 	BufferedImage im_mini_map;
     BufferedImage point_rouge;
 	
@@ -59,8 +60,9 @@ public class TileManager {
         a_g2.drawImage( im_mini_map , 650, 8, 2*m_gp.TILE_SIZE, 2*m_gp.TILE_SIZE, null);
     }
 
-    public void point_rouge (Graphics2D a_g2) {
-        a_g2.drawImage( point_rouge , 650, 8, 10, 8, null);
+    public void point_rouge (Graphics2D a_g2 , Player p) {
+    	System.out.println(650+ ((p.getM_x()*100/768)*85/100)); 
+        a_g2.drawImage( point_rouge , 650+ ((p.getM_x()*100/768)*85/100), 8+((p.getM_y()*100/576)*85/100), 10, 8, null);
     }
 	
 	/**
@@ -132,7 +134,7 @@ public class TileManager {
 	}
 	
 	/**
-	 * Affichage de la carte avec les différentes tuiles
+	 * Affichage de la carte avec les diffï¿½rentes tuiles
 	 * @param g2
 	 */
 	public void draw(Graphics2D g2) {
