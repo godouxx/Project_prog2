@@ -33,6 +33,7 @@ public class ColisionVerif {
 				System.out.println("On entre en collsion avec un obstacle vers le bas et la gauche");
 				entity.collision = true;
 			}
+			 return;
 		} 
 		//on verifie si on est en collision avec un obstacle en bas a droite
 		else if (entity.goDown && entity.goRight) {
@@ -44,6 +45,7 @@ public class ColisionVerif {
 				System.out.println("On entre en collsion avec un obstacle vers le bas et la droite");
 				entity.collision = true;
 			}
+			 return;
 		} 
 		// On vérifie si on est en collision avec un obstacle en haut à gauche
 		else if (entity.goUp && entity.goLeft) {
@@ -56,6 +58,7 @@ public class ColisionVerif {
 		        System.out.println("On entre en collision avec un obstacle vers le haut et la gauche");
 		        entity.collision = true;
 		    }
+		    return;
 		} 
 
 		// On vérifie si on est en collision avec un obstacle en haut à droite
@@ -69,6 +72,7 @@ public class ColisionVerif {
 		        System.out.println("On entre en collision avec un obstacle vers le haut et la droite");
 		        entity.collision = true;
 		    }
+		    return;
 		}
 
 
@@ -82,6 +86,7 @@ public class ColisionVerif {
 				System.out.println("On entre en collsion avec un obstacle vers le haut");
 				entity.collision = true;
 			}
+			 return;
 		}
 		//on vÃ©rifie si on est en collision avec un obstacle Ã  droite
 		else if (entity.goRight) {
@@ -102,6 +107,7 @@ public class ColisionVerif {
 				System.out.println("On entre en collsion avec un obstacle vers la gauche");
 				entity.collision = true;
 			}
+			 return;
 		} 
 		//on vÃ©rifie si on est en collision avec un obstacle en bas
 		else if (entity.goDown == true) {
@@ -112,6 +118,7 @@ public class ColisionVerif {
 				System.out.println("On entre en collsion avec un obstacle vers le bas");
 				entity.collision = true;
 			}
+			 return;
 
 		}
 
