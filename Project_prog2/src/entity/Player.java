@@ -23,6 +23,8 @@ public class Player extends Entity {
 	BufferedImage heart_empty;
 	BufferedImage heart_half;
 	BufferedImage heart_full;
+	BufferedImage game_over;
+
 
 	/**
 	 * Constructeur de Player
@@ -39,6 +41,7 @@ public class Player extends Entity {
 		this.pvMAX = 6;
 		this.pvACTUAL = this.pvMAX;
 		this.getHeartImage();
+		this.getGameOver();
 	}
 	
 
@@ -72,6 +75,14 @@ public class Player extends Entity {
 			
 			heart_full = ImageIO.read(getClass().getResource("/maps/heart_red_full.png"));
 					
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getGameOver() {
+		try {
+			game_over = ImageIO.read(getClass().getResource("/ecran_fin/game_over.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -190,8 +201,36 @@ public class Player extends Entity {
 			a_g2.drawImage(heart_full , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
 			a_g2.drawImage(heart_full , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
 			break;
+		case 5:
+			a_g2.drawImage(heart_full , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_full , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_half , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		case 4:
+			a_g2.drawImage(heart_full , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_full , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		case 3:
+			a_g2.drawImage(heart_full , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_half , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		case 2:
+			a_g2.drawImage(heart_full , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		case 1:
+			a_g2.drawImage(heart_half , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		case 0:
+			a_g2.drawImage(game_over , 200 , 200 ,  m_gp.SCREEN_HEIGHT, m_gp.SCREEN_WIDTH, null);
+			break;
 		default:
-			a_g2.drawImage(heart_empty , 20, 20, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(game_over , 200 , 200 ,  m_gp.SCREEN_HEIGHT, m_gp.SCREEN_WIDTH, null);
 	
 		}
 		
