@@ -74,7 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public void setupGame() {
 		createComponents.setComponents();
 	}
-	
+
 	/**
 	 * Lancement du thread principal
 	 */
@@ -142,18 +142,23 @@ public class GamePanel extends JPanel implements Runnable {
 		if (m_player.getPvACTUAL() == 0) {
 			m_player.over(g2);
 		} else {
-			// DRAW MINI MAP
-			m_tileM.draw_mini_map(g2);
-			// DRAW LE POINT DE LA MINIMAP
-			m_tileM.point_rouge(g2);
+			
+			
+			
+
 			// DRAW LES TILES
 			m_tileM.draw(g2);
 			// DRAW LE PLAYER
 			m_player.draw(g2);
-			//DRAW OBJECTS
-for(int i=0;i<objets.size();i++) {
-	objets.get(i).draw(g2, this);
-}
+			// DRAW OBJECTS
+			for (int i = 0; i < objets.size(); i++) {
+				objets.get(i).draw(g2, this);
+			}
+			// DRAW MINI MAP
+			m_tileM.draw_mini_map(g2);
+			// DRAW LE POINT DE LA MINIMAP
+			m_tileM.point_rouge(g2, m_player);
+
 			g2.dispose();
 		}
 
