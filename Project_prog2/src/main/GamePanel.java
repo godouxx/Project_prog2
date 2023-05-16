@@ -8,6 +8,7 @@ import entity.Entity;
 import entity.Monstre1;
 import entity.Player;
 import objetspassifs.Armes;
+import objetspassifs.ObjetsPassifs;
 import objetspassifs.Obstacles;
 import tile.TileManager;
 
@@ -30,14 +31,12 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COL; // 768 pixels
 	public final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREE_ROW; // 576 pixels
 
-	//param�tres du monde :
-	public final int maxWorldCol=32;
-	public final int maxWorldRow=24;
-	public final int worldWidth=TILE_SIZE*maxWorldCol;
-	public final int worldHeight=TILE_SIZE*maxWorldRow;
+	// param�tres du monde :
+	public final int maxWorldCol = 32;
+	public final int maxWorldRow = 24;
+	public final int worldWidth = TILE_SIZE * maxWorldCol;
+	public final int worldHeight = TILE_SIZE * maxWorldRow;
 
-
-	
 	// FPS : taux de rafraichissement
 	int m_FPS;
 
@@ -47,9 +46,9 @@ public class GamePanel extends JPanel implements Runnable {
 	Thread m_gameThread;
 	public Player m_player;
 	ArrayList<Entity> monstres;
+	ArrayList<ObjetsPassifs> objets;
 	TileManager m_tileM;
-	Armes m_arme1;
-	Obstacles m_obstacle1;
+
 	public ColisionVerif colisionVerif = new ColisionVerif(this);
 
 	/**
@@ -58,13 +57,15 @@ public class GamePanel extends JPanel implements Runnable {
 	public GamePanel() {
 		m_FPS = 60;
 		m_keyH = new KeyHandler();
-		m_player = new Player(this , m_keyH);
+		m_player = new Player(this, m_keyH);
 		m_tileM = new TileManager(this);
-		m_arme1 = new Armes(this, 2, 100, 100);
-		m_obstacle1 = new Obstacles(this, 100, 300);
+
+		
 
 		monstres = new ArrayList<Entity>();
+		objets= new ArrayList<ObjetsPassifs>();
 		intializeMonster();
+		initializeObjets();
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
@@ -77,6 +78,12 @@ public class GamePanel extends JPanel implements Runnable {
 		Monstre1 test2 = new Monstre1(this, 100, 100);
 		monstres.add(test);
 		monstres.add(test2);
+	}
+
+	public void initializeObjets() {
+		objets.add(new Armes(this, 2, 100, 300));
+		objets.add(new Obstacles(this, 400, 500));
+		
 	}
 
 	/**
@@ -137,7 +144,6 @@ public class GamePanel extends JPanel implements Runnable {
 		m_player.update();
 	}
 
-	
 	/**
 	 * Affichage des elements
 	 */
@@ -149,14 +155,17 @@ public class GamePanel extends JPanel implements Runnable {
 		} else {
 			m_tileM.draw(g2);
 			m_player.draw(g2);
-			m_arme1.draw(g2);
-			m_obstacle1.draw(g2);
+			drawObjets(g2);
 			drawMonster(g2);
 			g2.dispose();
 		}
 
 	}
-
+public void drawObjets(Graphics2D g2) {
+	for (int i = 0; i < this.objets.size(); i++) {
+		objets.get(i).draw(g2);
+	}
+}
 	public void drawMonster(Graphics2D g2) {
 		for (int i = 0; i < this.monstres.size(); i++) {
 			monstres.get(i).draw(g2);

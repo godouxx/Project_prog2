@@ -30,75 +30,73 @@ public class ColisionVerif {
 			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
 			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
 			if (gp.m_tileM.m_tile[tile1].m_collision == true || gp.m_tileM.m_tile[tile2].m_collision == true) {
-				System.out.println("On entre en collsion avec un obstacle vers le bas et la gauche");
+
 				entity.collision = true;
 			}
-			 return;
-		} 
-		//on verifie si on est en collision avec un obstacle en bas a droite
+			return;
+		}
+		// on verifie si on est en collision avec un obstacle en bas a droite
 		else if (entity.goDown && entity.goRight) {
 			entityBottomRow = (y_d + entity.getM_speed()) / gp.TILE_SIZE;
 			entityRightCol = (x_d - entity.getM_speed()) / gp.TILE_SIZE;
 			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
 			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
 			if (gp.m_tileM.m_tile[tile1].m_collision == true || gp.m_tileM.m_tile[tile2].m_collision == true) {
-				System.out.println("On entre en collsion avec un obstacle vers le bas et la droite");
+
 				entity.collision = true;
 			}
-			 return;
-		} 
+			return;
+		}
 		// On vÈrifie si on est en collision avec un obstacle en haut ‡ gauche
 		else if (entity.goUp && entity.goLeft) {
-		    entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE; // Mettez ‡ jour y_g avec une soustraction
-		    entityLeftCol = (x_g - entity.getM_speed()) / gp.TILE_SIZE;
-		    entityRightCol = (x_d - entity.getM_speed()) / gp.TILE_SIZE;
-		    tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
-		    tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
-		    if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
-		        System.out.println("On entre en collision avec un obstacle vers le haut et la gauche");
-		        entity.collision = true;
-		    }
-		    return;
-		} 
+			entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE; // Mettez ‡ jour y_g avec une soustraction
+			entityLeftCol = (x_g - entity.getM_speed()) / gp.TILE_SIZE;
+
+			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
+			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
+			if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+
+				entity.collision = true;
+			}
+			return;
+		}
 
 		// On vÈrifie si on est en collision avec un obstacle en haut ‡ droite
 		else if (entity.goUp && entity.goRight) {
-		    entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE; // Mettez ‡ jour y_g avec une soustraction
-		    entityLeftCol = (x_g + entity.getM_speed()) / gp.TILE_SIZE; // Mettez ‡ jour x_g avec une addition
-		    entityRightCol = (x_d + entity.getM_speed()) / gp.TILE_SIZE; // Mettez ‡ jour x_d avec une addition
-		    tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
-		    tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
-		    if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
-		        System.out.println("On entre en collision avec un obstacle vers le haut et la droite");
-		        entity.collision = true;
-		    }
-		    return;
+			entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE; // Mettez ‡ jour y_g avec une soustraction
+			entityRightCol = (x_d + entity.getM_speed()) / gp.TILE_SIZE; // Mettez ‡ jour x_d avec une addition
+			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
+			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
+			if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+
+				entity.collision = true;
+			}
+			return;
 		}
 
-
-		//on v√©rifie si on est en collision avec un obstacle en haut
+		// on v√©rifie si on est en collision avec un obstacle en haut
 		else if (entity.goUp) {
 
-			entityTopRow = (y_g + entity.getM_speed()) / gp.TILE_SIZE;
+			entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE;
 			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
 			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
 			if (gp.m_tileM.m_tile[tile1].m_collision == true || gp.m_tileM.m_tile[tile2].m_collision == true) {
 				System.out.println("On entre en collsion avec un obstacle vers le haut");
 				entity.collision = true;
 			}
-			 return;
+			return;
 		}
-		//on v√©rifie si on est en collision avec un obstacle √† droite
+		// on v√©rifie si on est en collision avec un obstacle √† droite
 		else if (entity.goRight) {
 			entityRightCol = (x_d - entity.getM_speed()) / gp.TILE_SIZE;
 			tile1 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
 			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
 			if (gp.m_tileM.m_tile[tile1].m_collision == true || gp.m_tileM.m_tile[tile2].m_collision == true) {
-				System.out.println("On entre en collsion avec un obstacle vers la droite");
+
 				entity.collision = true;
 			}
-		} 
-		//on v√©rifie si on est en collision avec un obstacle √† gauche
+		}
+		// on v√©rifie si on est en collision avec un obstacle √† gauche
 		else if (entity.goLeft == true) {
 			entityLeftCol = (x_g - entity.getM_speed()) / gp.TILE_SIZE;
 			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
@@ -107,18 +105,18 @@ public class ColisionVerif {
 				System.out.println("On entre en collsion avec un obstacle vers la gauche");
 				entity.collision = true;
 			}
-			 return;
-		} 
-		//on v√©rifie si on est en collision avec un obstacle en bas
+			return;
+		}
+		// on v√©rifie si on est en collision avec un obstacle en bas
 		else if (entity.goDown == true) {
 			entityBottomRow = (y_d + entity.getM_speed()) / gp.TILE_SIZE;
 			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
 			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
 			if (gp.m_tileM.m_tile[tile1].m_collision == true || gp.m_tileM.m_tile[tile2].m_collision == true) {
-				System.out.println("On entre en collsion avec un obstacle vers le bas");
+
 				entity.collision = true;
 			}
-			 return;
+			return;
 
 		}
 

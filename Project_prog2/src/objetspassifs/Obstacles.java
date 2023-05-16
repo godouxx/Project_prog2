@@ -32,7 +32,7 @@ public class Obstacles extends ObjetsPassifs{
 	 * Affichage du l'image de l'arme dans la fenetre du jeu
 	 * @param a_g2 Graphics2D 
 	 */
-	public void draw(Graphics2D a_g2) {
+	@Override public void draw(Graphics2D a_g2) {
 		// recupere l'image de l'obstacle
 		BufferedImage l_image = m_ObjetImage;
 		// affiche l'obstacle avec l'image "image", avec les coordonnees x et y, et de taille tileSize (16x16) sans �chelle, et 48x48 avec �chelle)
