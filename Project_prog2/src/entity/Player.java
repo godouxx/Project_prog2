@@ -42,6 +42,7 @@ public class Player extends Entity {
 		this.area_collision = new Rectangle(0, 0, 40, 40);
 		this.pvMAX = 6;
 		this.pvACTUAL = this.pvMAX;
+		this.direction="down";
 		this.getHeartImage();
 		this.getGameOver();
 		screenX = a_gp.SCREEN_WIDTH / 2 - (a_gp.TILE_SIZE / 2);
@@ -101,20 +102,25 @@ public class Player extends Entity {
 	 */
 	@Override
 	public void update() {
-
+	
 		for (int element : m_keyH.liste) {
 			
 			if (element == 90) {
 				goUp = true;
+				direction="up";
+				
 			}
 			if (element == 83) {
 				goDown = true;
+				direction="down";
 			}
 			if (element == 81) {
 				goLeft = true;
+				direction="left";
 			}
 			if (element == 68) {
 				goRight = true;
+				direction="right";
 			}
 
 
@@ -150,6 +156,8 @@ public class Player extends Entity {
 
 		}
 
+		m_gp.eventManagerr.checkEvent();
+		
 		goUp = false;
 		goDown = false;
 		goLeft = false;

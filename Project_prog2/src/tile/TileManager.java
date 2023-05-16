@@ -61,8 +61,7 @@ public class TileManager {
     }
 
     public void point_rouge (Graphics2D a_g2 , Player p) {
-    	System.out.println(650+ ((p.getM_x()*100/768)*85/100)); 
-        a_g2.drawImage( point_rouge , 650+ ((p.getM_x()*100/768)*85/100), 8+((p.getM_y()*100/576)*85/100), 10, 8, null);
+        a_g2.drawImage( point_rouge , 650+p.getM_x()*90/m_gp.worldWidth, 8+(p.getM_y()*90/m_gp.worldHeight), 10, 8, null);
     }
 	
 	/**
@@ -77,7 +76,6 @@ public class TileManager {
 			m_tile[1] = new Tile();
 			m_tile[1].m_image = ImageIO.read(getClass().getResource("/tiles/BRICK2.png"));
 			m_tile[1].m_collision=true;
-			
 			m_tile[2] = new Tile();
 			m_tile[2].m_image = ImageIO.read(getClass().getResource("/tiles/WATER.png"));
 			m_tile[2].m_collision=true;

@@ -32,27 +32,27 @@ public class ColisionVerif {
 					entity.area_collision.y -= entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						System.out.print("collision up");
+					//	System.out.print("collision up");
 					}
 				} else if (entity.goDown == true) {
 					entity.area_collision.y += entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						System.out.print("collision down");
+					//	System.out.print("collision down");
 					}
 
 				} else if (entity.goLeft == true) {
 					entity.area_collision.x -= entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						System.out.print("collision left");
+					//	System.out.print("collision left");
 					}
 
 				} else if (entity.goRight == true) {
 					entity.area_collision.x += entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						System.out.print("collision right");
+					//	System.out.print("collision right");
 					}
 				}
 				// reinitialisation area entite et objet

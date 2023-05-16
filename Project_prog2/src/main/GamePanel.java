@@ -14,6 +14,7 @@ import tile.TileManager;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.beans.EventHandler;
 import java.util.ArrayList;
 
 /**
@@ -49,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
 	ArrayList<Entity> monstres;
 	public ArrayList<ObjetsPassifs> objets;
 	TileManager m_tileM;
-
+	public EventManager eventManagerr = new EventManager(this);
 	public ColisionVerif colisionVerif = new ColisionVerif(this);
 
 	/**
@@ -117,15 +118,6 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	}
 
-	/*
-	 * m�j des monstres
-	 */
-	public void update_monstres() {
-		for (int i = 0; i < this.monstres.size(); i++) {
-			monstres.get(i).update();
-		}
-	}
-
 	/**
 	 * Mise � jour des donn�es des entit�s
 	 */
@@ -142,9 +134,6 @@ public class GamePanel extends JPanel implements Runnable {
 		if (m_player.getPvACTUAL() == 0) {
 			m_player.over(g2);
 		} else {
-			
-			
-			
 
 			// DRAW LES TILES
 			m_tileM.draw(g2);

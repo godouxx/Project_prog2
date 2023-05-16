@@ -8,14 +8,13 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 
 public class Nourriture extends ObjetsPassifs {
-	private String name = "food";
 	private int m_heal;
-	GamePanel m_gp;
+
 
 	public
 
-	Nourriture(GamePanel a_gp, int heal, int x, int y) {
-		m_gp = a_gp;
+	Nourriture(int heal, int x, int y) {
+	
 		m_heal = heal;
 		this.getNourritureImage();
 		m_worldx = x;
@@ -36,20 +35,6 @@ public class Nourriture extends ObjetsPassifs {
 	}
 
 	
-
-	void delete() {
-		this.m_gp = null;
-		this.m_heal = 0;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public int getM_heal() {
 		return m_heal;
 	}

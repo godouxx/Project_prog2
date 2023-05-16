@@ -10,8 +10,7 @@ import main.GamePanel;
 public class Armes extends ObjetsPassifs {
 
 	private int m_dammage;
-	GamePanel m_gp;
-
+	
 	public
 
 	Armes(int dammage, int x, int y) { // constructeur

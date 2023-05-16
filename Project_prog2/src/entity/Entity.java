@@ -2,6 +2,9 @@ package entity;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import javax.swing.text.Position;
+
 import java.awt.Rectangle;
 
 /**
@@ -18,6 +21,7 @@ public abstract class Entity {
 	protected int degat;
 	public Rectangle area_collision;
 	public boolean collision;
+	public String direction;
 	public boolean goUp = false;
 	public boolean goDown = false;
 	public boolean goLeft = false;

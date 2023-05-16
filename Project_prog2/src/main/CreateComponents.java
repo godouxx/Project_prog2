@@ -1,6 +1,7 @@
 package main;
 
 import objetspassifs.Armes;
+import objetspassifs.Obstacles;
 
 public class CreateComponents {
 	GamePanel gp;
@@ -10,5 +11,6 @@ public class CreateComponents {
 	}
 	public void setComponents() {
 		gp.objets.add(new Armes(2,100,200));
+		gp.objets.add(new Obstacles(gp.TILE_SIZE*4,gp.TILE_SIZE*5));
 	}
 }
