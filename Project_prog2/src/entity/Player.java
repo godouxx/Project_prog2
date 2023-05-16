@@ -17,12 +17,18 @@ import tile.Tile;
  *
  */
 public class Player extends Entity {
-
+	
+	
 	GamePanel m_gp;
 	KeyHandler m_keyH;
 	BufferedImage heart_empty;
 	BufferedImage heart_half;
 	BufferedImage heart_full;
+	BufferedImage game_over;
+
+	public final int screenX;
+	public final int screenY;
+
 
 	/**
 	 * Constructeur de Player
@@ -39,6 +45,9 @@ public class Player extends Entity {
 		this.pvMAX = 6;
 		this.pvACTUAL = this.pvMAX;
 		this.getHeartImage();
+		this.getGameOver();
+		screenX=a_gp.SCREEN_WIDTH/2-(a_gp.TILE_SIZE/2);
+		screenY=a_gp.SCREEN_HEIGHT/2-(a_gp.TILE_SIZE/2);
 	}
 	
 
@@ -75,6 +84,18 @@ public class Player extends Entity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void getGameOver() {
+		try {
+			game_over = ImageIO.read(getClass().getResource("/ecran_fin/game_over.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void over(Graphics2D a_g2) {
+		a_g2.drawImage(game_over, m_gp.SCREEN_WIDTH/4 , m_gp.SCREEN_HEIGHT/4, 400 , 400 ,  null);
 	}
 	
 	/**
@@ -190,7 +211,7 @@ public class Player extends Entity {
 		BufferedImage l_image = m_idleImage;
 		// affiche le personnage avec l'image "image", avec les coordonn�es x et y, et
 		// de taille tileSize (16x16) sans �chelle, et 48x48 avec �chelle)
-		a_g2.drawImage(l_image, m_x, m_y, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+		a_g2.drawImage(l_image, screenX, screenY, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
 		
 		switch(this.getPvACTUAL()) {
 		case 6:
@@ -198,8 +219,33 @@ public class Player extends Entity {
 			a_g2.drawImage(heart_full , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
 			a_g2.drawImage(heart_full , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
 			break;
+		case 5:
+			a_g2.drawImage(heart_full , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_full , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_half , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		case 4:
+			a_g2.drawImage(heart_full , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_full , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		case 3:
+			a_g2.drawImage(heart_full , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_half , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		case 2:
+			a_g2.drawImage(heart_full , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
+		case 1:
+			a_g2.drawImage(heart_half , 20, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(heart_empty , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			break;
 		default:
-			a_g2.drawImage(heart_empty , 20, 20, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			a_g2.drawImage(game_over, m_gp.SCREEN_WIDTH/2 , m_gp.SCREEN_HEIGHT/2, 200 , 200 ,  null);
 	
 		}
 		
