@@ -135,12 +135,16 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+		if (m_player.getPvACTUAL() == 0) {
+			m_player.over(g2);
+		} else {
 			m_tileM.draw(g2);
 			m_player.draw(g2);
 			m_arme1.draw(g2);
 			m_obstacle1.draw(g2);
 			drawMonster(g2);
 			g2.dispose();
+		}
 
 	}
 
