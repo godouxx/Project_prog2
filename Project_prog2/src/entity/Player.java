@@ -76,19 +76,19 @@ public class Player extends Entity {
 	}
 
 	public void goUpNext() {
-		this.m_y -= 1;
+		this.m_y -= 1*m_speed;
 	}
 
 	public void goDownNext() {
-		this.m_y += 1;
+		this.m_y += 1*m_speed;
 	}
 
 	public void goLeftNext() {
-		this.m_x -= 1;
+		this.m_x -= 1*m_speed;
 	}
 
 	public void goRightNext() {
-		this.m_x += 1;
+		this.m_x += 1*m_speed;
 	}
 
 	/**
