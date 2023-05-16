@@ -20,7 +20,7 @@ public class TileManager {
 	GamePanel m_gp;			//panel du jeu principal
 	Tile[] m_tile;			//tableau de toutes les tiles possibles dans le jeu
 	int m_maxTiles = 10;	//nombre maximum de tiles chargeable dans le jeu
-	int m_mapTileNum[][];	//rï¿½partition des tiles dans la carte du jeu
+	int m_mapTileNum[][];	//répartition des tiles dans la carte du jeu
 	
 	/**
 	 * Constructeur
@@ -41,21 +41,27 @@ public class TileManager {
 		try {
 			m_tile[0] = new Tile();
 			m_tile[0].m_image = ImageIO.read(getClass().getResource("/tiles/GRASS.png"));
+			m_tile[0].m_collision=false;
 			
 			m_tile[1] = new Tile();
 			m_tile[1].m_image = ImageIO.read(getClass().getResource("/tiles/BRICK2.png"));
+			m_tile[1].m_collision=true;
 			
 			m_tile[2] = new Tile();
 			m_tile[2].m_image = ImageIO.read(getClass().getResource("/tiles/WATER.png"));
+			m_tile[2].m_collision=true;
 			
 			m_tile[3] = new Tile();
 			m_tile[3].m_image = ImageIO.read(getClass().getResource("/tiles/LAVA.png"));
+			m_tile[3].m_collision=true;
 			
 			m_tile[4] = new Tile();
 			m_tile[4].m_image = ImageIO.read(getClass().getResource("/tiles/SAND.png"));
+			m_tile[4].m_collision=false;
 			
 			m_tile[5] = new Tile();
 			m_tile[5].m_image = ImageIO.read(getClass().getResource("/tiles/SNOW.png"));
+			m_tile[5].m_collision=false;
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -97,7 +103,7 @@ public class TileManager {
 	}
 	
 	/**
-	 * Affichage de la carte avec les diffï¿½rentes tuiles
+	 * Affichage de la carte avec les différentes tuiles
 	 * @param g2
 	 */
 	public void draw(Graphics2D g2) {

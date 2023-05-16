@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -30,6 +31,7 @@ public class Player extends Entity {
 		this.m_keyH = a_keyH;
 		this.setDefaultValues();
 		this.getPlayerImage();
+		this.area_collision=new Rectangle(0,0,48,48);
 	}
 
 	/**
@@ -42,7 +44,7 @@ public class Player extends Entity {
 	}
 
 	/**
-	 * Rï¿½cupï¿½ration de l'image du personnage
+	 * Réupération de l'image du personnage
 	 */
 	public void getPlayerImage() {
 		// gestion des expections
@@ -77,6 +79,11 @@ public class Player extends Entity {
 	        if (element == 68) {
 	            goRight = true;
 	        }
+	        
+	        
+	        
+	        collision=false;
+	        m_gp.colisionVerif.checkTile(this);
 	    }
 
 	    // Déplacement diagonal
