@@ -42,7 +42,7 @@ public class Player extends Entity {
 		this.setDefaultValues();
 		this.getPlayerImage();
 		this.area_collision=new Rectangle(0,0,48,48);
-		this.pvMAX = 0;
+		this.pvMAX = 6;
 		this.pvACTUAL = this.pvMAX;
 		this.getHeartImage();
 		this.getGameOver();
