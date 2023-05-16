@@ -17,13 +17,17 @@ import tile.Tile;
  *
  */
 public class Player extends Entity {
-
+	
+	
 	GamePanel m_gp;
 	KeyHandler m_keyH;
 	BufferedImage heart_empty;
 	BufferedImage heart_half;
 	BufferedImage heart_full;
 	BufferedImage game_over;
+
+	public final int screenX;
+	public final int screenY;
 
 
 	/**
@@ -42,6 +46,8 @@ public class Player extends Entity {
 		this.pvACTUAL = this.pvMAX;
 		this.getHeartImage();
 		this.getGameOver();
+		screenX=a_gp.SCREEN_WIDTH/2-(a_gp.TILE_SIZE/2);
+		screenY=a_gp.SCREEN_HEIGHT/2-(a_gp.TILE_SIZE/2);
 	}
 	
 
@@ -197,7 +203,7 @@ public class Player extends Entity {
 		BufferedImage l_image = m_idleImage;
 		// affiche le personnage avec l'image "image", avec les coordonn�es x et y, et
 		// de taille tileSize (16x16) sans �chelle, et 48x48 avec �chelle)
-		a_g2.drawImage(l_image, m_x, m_y, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+		a_g2.drawImage(l_image, screenX, screenY, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
 		
 		switch(this.getPvACTUAL()) {
 		case 6:
