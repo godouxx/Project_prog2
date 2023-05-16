@@ -4,11 +4,14 @@ import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.JPanel;
 
+import entity.Entity;
+import entity.Monstre1;
 import entity.Player;
 import tile.TileManager;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 /**
  * Panel principal du jeu contenant la map principale
@@ -32,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable{
 	KeyHandler m_keyH;
 	Thread m_gameThread;
 	Player m_player;
+	ArrayList<Entity> monstres;
 	TileManager m_tileM;
 		
 	/**
@@ -42,13 +46,22 @@ public class GamePanel extends JPanel implements Runnable{
 		m_keyH = new KeyHandler();
 		m_player = new Player(this, m_keyH);
 		m_tileM = new TileManager(this);
-		
+		monstres=new ArrayList<Entity>();
+		intializeMonster();
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(m_keyH);
 		this.setFocusable(true);
 	}
+	
+	public void intializeMonster() {
+		Monstre1 test =new Monstre1(this, 200, 200);
+		Monstre1 test2 =new Monstre1(this, 100, 100);
+		monstres.add(test);
+		monstres.add(test2);
+	}
+	
 	
 	/**
 	 * Lancement du thread principal
@@ -89,8 +102,14 @@ public class GamePanel extends JPanel implements Runnable{
 			}
 		}
 	}
-	
-
+	/*
+	 * màj des monstres
+	 */
+public void update_monstres() {
+	for(int i=0;i<this.monstres.size();i++) {
+		monstres.get(i).update();
+	}
+}
 	/**
 	 * Mise à jour des données des entités
 	 */
@@ -106,7 +125,14 @@ public class GamePanel extends JPanel implements Runnable{
 		Graphics2D g2 = (Graphics2D) g;
 		m_tileM.draw(g2);
 		m_player.draw(g2);
+		drawMonster(g2);
 		g2.dispose();
+	}
+	
+public void drawMonster(Graphics2D g2) {
+		for(int i=0;i<this.monstres.size();i++) {
+			monstres.get(i).draw(g2);
+		}
 	}
 	
 }

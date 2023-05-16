@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -56,7 +57,12 @@ public abstract class Entity{
 		this.size = size;
 	}
 	
-	
+	public void draw(Graphics2D a_g2) {
+		
+	}
+	public void update() {
+		
+	}
 	
 	public void takeDamage(Entity e) {
 		pvACTUAL=pvACTUAL-e.getDegat();
