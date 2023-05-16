@@ -88,6 +88,10 @@ public class Player extends Entity {
 		}
 	}
 	
+	public void over(Graphics2D a_g2) {
+		a_g2.drawImage(game_over, m_gp.SCREEN_WIDTH/4 , m_gp.SCREEN_HEIGHT/4, 400 , 400 ,  null);
+	}
+	
 	/**
 	 * Mise � jour des donn�es du joueur
 	 */
@@ -226,11 +230,8 @@ public class Player extends Entity {
 			a_g2.drawImage(heart_empty , 70, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
 			a_g2.drawImage(heart_empty , 120, 8, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
 			break;
-		case 0:
-			a_g2.drawImage(game_over , 200 , 200 ,  m_gp.SCREEN_HEIGHT, m_gp.SCREEN_WIDTH, null);
-			break;
 		default:
-			a_g2.drawImage(game_over , 200 , 200 ,  m_gp.SCREEN_HEIGHT, m_gp.SCREEN_WIDTH, null);
+			a_g2.drawImage(game_over, m_gp.SCREEN_WIDTH/2 , m_gp.SCREEN_HEIGHT/2, 200 , 200 ,  null);
 	
 		}
 		

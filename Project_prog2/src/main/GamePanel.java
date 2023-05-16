@@ -126,7 +126,7 @@ public class GamePanel extends JPanel implements Runnable {
 	 * Mise � jour des donn�es des entit�s
 	 */
 	public void update() {
-		m_player.update();	
+		m_player.update();
 	}
 
 	/**
@@ -135,12 +135,13 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		m_tileM.draw(g2);
-		m_player.draw(g2);
-		m_arme1.draw(g2);
-		m_obstacle1.draw(g2);
-		drawMonster(g2);
-		g2.dispose();
+			m_tileM.draw(g2);
+			m_player.draw(g2);
+			m_arme1.draw(g2);
+			m_obstacle1.draw(g2);
+			drawMonster(g2);
+			g2.dispose();
+
 	}
 
 	public void drawMonster(Graphics2D g2) {
