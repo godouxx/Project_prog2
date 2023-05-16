@@ -2,6 +2,9 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.HashSet;
+
 
 /**
  * Gestionnaire d'�v�nements (touche clavier)
@@ -9,8 +12,10 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener{
 
-	public int code=0;
-	
+    public HashSet<Integer> liste = new HashSet<Integer>();
+
+	 
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
@@ -20,13 +25,13 @@ public class KeyHandler implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		// r�cup�re le code du boutton appuy�
 		int code = e.getKeyCode();
-		System.out.println(code);
-		this.code = code;
+		liste.add(code);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		code=0;
+		int code = e.getKeyCode();
+		liste.remove(code);
 	}
 
 }
