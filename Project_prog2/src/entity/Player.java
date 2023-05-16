@@ -101,7 +101,7 @@ public class Player extends Entity {
 	public void update() {
 
 		for (int element : m_keyH.liste) {
-			System.out.println(element);
+			
 			if (element == 90) {
 				goUp = true;
 			}

@@ -15,8 +15,8 @@ public class ColisionVerif {
 		int x_d = entity.getM_x() + entity.area_collision.x + entity.area_collision.width;
 		int y_g = entity.getM_y() + entity.area_collision.y;
 		int y_d = entity.getM_y() + entity.area_collision.y + entity.area_collision.height;
-		System.out.println(gp.TILE_SIZE);
-		System.out.println(x_g / gp.TILE_SIZE);
+		
+		
 		int entityLeftCol = x_g / gp.TILE_SIZE;
 		int entityRightCol = x_g / gp.TILE_SIZE;
 		int entityTopRow = y_g / gp.TILE_SIZE;
@@ -81,8 +81,7 @@ public class ColisionVerif {
 			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
 			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
 			if (gp.m_tileM.m_tile[tile1].m_collision == true || gp.m_tileM.m_tile[tile2].m_collision == true) {
-				System.out.println("On entre en collsion avec un obstacle vers le haut");
-				entity.collision = true;
+					entity.collision = true;
 			}
 			return;
 		}
@@ -102,7 +101,6 @@ public class ColisionVerif {
 			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
 			tile2 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
 			if (gp.m_tileM.m_tile[tile1].m_collision == true || gp.m_tileM.m_tile[tile2].m_collision == true) {
-				System.out.println("On entre en collsion avec un obstacle vers la gauche");
 				entity.collision = true;
 			}
 			return;

@@ -45,8 +45,9 @@ public class GamePanel extends JPanel implements Runnable {
 	KeyHandler m_keyH;
 	Thread m_gameThread;
 	public Player m_player;
+	public CreateComponents createComponents = new CreateComponents(this);
 	ArrayList<Entity> monstres;
-	ArrayList<ObjetsPassifs> objets;
+	public ArrayList<ObjetsPassifs> objets;
 	TileManager m_tileM;
 
 	public ColisionVerif colisionVerif = new ColisionVerif(this);
@@ -60,12 +61,9 @@ public class GamePanel extends JPanel implements Runnable {
 		m_player = new Player(this, m_keyH);
 		m_tileM = new TileManager(this);
 
-		
-
 		monstres = new ArrayList<Entity>();
-		objets= new ArrayList<ObjetsPassifs>();
-		intializeMonster();
-		initializeObjets();
+		objets = new ArrayList<ObjetsPassifs>();
+
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
@@ -73,19 +71,10 @@ public class GamePanel extends JPanel implements Runnable {
 		this.setFocusable(true);
 	}
 
-	public void intializeMonster() {
-		Monstre1 test = new Monstre1(this, 200, 200);
-		Monstre1 test2 = new Monstre1(this, 100, 100);
-		monstres.add(test);
-		monstres.add(test2);
+	public void setupGame() {
+		createComponents.setComponents();
 	}
-
-	public void initializeObjets() {
-		objets.add(new Armes(this, 2, 100, 300));
-		objets.add(new Obstacles(this, 400, 500));
-		
-	}
-
+	
 	/**
 	 * Lancement du thread principal
 	 */
@@ -153,25 +142,21 @@ public class GamePanel extends JPanel implements Runnable {
 		if (m_player.getPvACTUAL() == 0) {
 			m_player.over(g2);
 		} else {
+			// DRAW MINI MAP
 			m_tileM.draw_mini_map(g2);
+			// DRAW LE POINT DE LA MINIMAP
 			m_tileM.point_rouge(g2);
+			// DRAW LES TILES
 			m_tileM.draw(g2);
+			// DRAW LE PLAYER
 			m_player.draw(g2);
-			drawObjets(g2);
-			drawMonster(g2);
+			//DRAW OBJECTS
+for(int i=0;i<objets.size();i++) {
+	objets.get(i).draw(g2, this);
+}
 			g2.dispose();
 		}
 
-	}
-public void drawObjets(Graphics2D g2) {
-	for (int i = 0; i < this.objets.size(); i++) {
-		objets.get(i).draw(g2);
-	}
-}
-	public void drawMonster(Graphics2D g2) {
-		for (int i = 0; i < this.monstres.size(); i++) {
-			monstres.get(i).draw(g2);
-		}
 	}
 
 }
