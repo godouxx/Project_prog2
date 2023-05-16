@@ -14,12 +14,15 @@ public class Armes extends ObjetsPassifs {
 	
 	public 
 	
-	Armes(GamePanel a_gp, int dammage) { //constructeur
+	Armes(GamePanel a_gp, int dammage, int x, int y) { //constructeur
 		
 		m_gp = a_gp;
 		m_dammage = dammage;
+		m_x = x;
+		m_y = y;
 		this.getArmeImage();
-		this.setDefaultValues();} 
+
+	} 
 	
 	int getDammage() {return m_dammage;} //nombre de degats fait par l'arme
 
@@ -30,11 +33,6 @@ public class Armes extends ObjetsPassifs {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	void setDefaultValues() { //recuperation position arme
-		m_x = 300;
-		m_y = 100;
 	}
 	
 	/**

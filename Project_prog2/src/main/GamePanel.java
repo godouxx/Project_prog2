@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import entity.Player;
 import objetspassifs.Armes;
+import objetspassifs.Obstacles;
 import tile.TileManager;
 
 import java.awt.Graphics;
@@ -35,6 +36,7 @@ public class GamePanel extends JPanel implements Runnable{
 	Player m_player;
 	TileManager m_tileM;
 	Armes m_arme1;
+	Obstacles m_obstacle1;
 		
 	/**
 	 * Constructeur
@@ -44,7 +46,8 @@ public class GamePanel extends JPanel implements Runnable{
 		m_keyH = new KeyHandler();
 		m_player = new Player(this, m_keyH);
 		m_tileM = new TileManager(this);
-		m_arme1 = new Armes(this, 2);
+		m_arme1 = new Armes(this, 2, 100, 100);
+		m_obstacle1 = new Obstacles(this, 100, 300);
 		
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBackground(Color.black);
@@ -110,6 +113,7 @@ public class GamePanel extends JPanel implements Runnable{
 		m_tileM.draw(g2);
 		m_player.draw(g2);
 		m_arme1.draw(g2);
+		m_obstacle1.draw(g2);
 		g2.dispose();
 	}
 	

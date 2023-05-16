@@ -12,24 +12,21 @@ public class Obstacles extends ObjetsPassifs{
 	private GamePanel m_gp;
 	
 	public
-	Obstacles(GamePanel a_gp) {
+	Obstacles(GamePanel a_gp, int x, int y) {
 		m_gp = a_gp;
 		this.getObstaclesImage();
-		this.setDefaultValues();
-		}
+		m_x = x;
+		m_y = y;
+	}
 	
 	void getObstaclesImage() { //recuperation image nourriture
 		//gestion des expections 
 		try {
-			m_ObjetImage = ImageIO.read(getClass().getResource(""));
+			m_ObjetImage = ImageIO.read(getClass().getResource("/obstacle/rocher(2).png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	void setDefaultValues() { //recuperation position arme
-		m_x = 50;
-		m_y = 50;}
 	
 	/**
 	 * Affichage du l'image de l'arme dans la fenetre du jeu

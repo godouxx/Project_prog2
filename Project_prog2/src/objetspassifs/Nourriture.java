@@ -14,12 +14,13 @@ public class Nourriture extends ObjetsPassifs{
 	
 	public
 	
-	Nourriture(GamePanel a_gp, int heal) {
+	Nourriture(GamePanel a_gp, int heal, int x, int y) {
 		
 		m_gp = a_gp;
 		m_heal = heal;
 		this.getNourritureImage();
-		this.setDefaultValues();
+		m_x = x;
+		m_y = y;
 	}
 
 	int getHeal(){return m_heal;}
@@ -27,7 +28,7 @@ public class Nourriture extends ObjetsPassifs{
 	void getNourritureImage() { //recuperation image nourriture
 		//gestion des expections 
 		try {
-			m_ObjetImage = ImageIO.read(getClass().getResource(""));
+			m_ObjetImage = ImageIO.read(getClass().getResource("/nourriture/pomme.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -47,5 +48,10 @@ public class Nourriture extends ObjetsPassifs{
 		BufferedImage l_image = m_ObjetImage;
 		// affiche la nourriture avec l'image "image", avec les coordonnees x et y, et de taille tileSize (16x16) sans �chelle, et 48x48 avec �chelle)
 		a_g2.drawImage(l_image, m_x, m_y, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+	}
+	
+	void delete() {
+		this.m_gp = null;
+		this.m_heal = 0;
 	}
 }
