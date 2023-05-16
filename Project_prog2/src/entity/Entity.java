@@ -18,6 +18,7 @@ public abstract class Entity {
 	protected int degat;
 	public Rectangle area_collision;
 	protected boolean collision;
+	public String direction;
 
 	public int getM_x() {
 		return m_x;
