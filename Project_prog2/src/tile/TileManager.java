@@ -1,6 +1,7 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +22,8 @@ public class TileManager {
 	public Tile[] m_tile;			//tableau de toutes les tiles possibles dans le jeu
 	int m_maxTiles = 10;	//nombre maximum de tiles chargeable dans le jeu
 	public int m_mapTileNum[][];	//répartition des tiles dans la carte du jeu
+	BufferedImage im_mini_map;
+    BufferedImage point_rouge;
 	
 	/**
 	 * Constructeur
@@ -32,7 +35,33 @@ public class TileManager {
 		m_mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 		this.getTileImage();
 		this.loadMap("/maps/map2.txt");
+		this.getMiniMap();
+        this.getPointRouge();
 	}
+	
+	public void getMiniMap() {
+        try {
+            im_mini_map = ImageIO.read(getClass().getResource("/maps/mini_map.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getPointRouge() {
+        try {
+            point_rouge = ImageIO.read(getClass().getResource("/maps/point_rouge.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void draw_mini_map (Graphics2D a_g2) {
+        a_g2.drawImage( im_mini_map , 650, 8, 2*m_gp.TILE_SIZE, 2*m_gp.TILE_SIZE, null);
+    }
+
+    public void point_rouge (Graphics2D a_g2) {
+        a_g2.drawImage( point_rouge , 650, 8, 10, 8, null);
+    }
 	
 	/**
 	 * Chargement de toutes les tuiles du jeu
