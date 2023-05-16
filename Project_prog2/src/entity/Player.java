@@ -107,6 +107,7 @@ public class Player extends Entity {
 	        
 	        collision=false;
 	       // m_gp.colisionVerif.checkTile(this);
+	      //  m_gp.colisionVerif.checkTile(this);
 	    }
 
 	    // D�placement diagonal
