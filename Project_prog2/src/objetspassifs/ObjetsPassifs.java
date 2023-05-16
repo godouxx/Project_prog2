@@ -9,5 +9,5 @@ import java.awt.image.BufferedImage;
 
 public class ObjetsPassifs {
 	public int m_x, m_y;				//position sur la map
-	public BufferedImage m_idleImage;	//Une image d'objet
+	public BufferedImage m_ObjetImage;	//Une image d'objet
 }
