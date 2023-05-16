@@ -30,14 +30,12 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COL; // 768 pixels
 	public final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREE_ROW; // 576 pixels
 
-	//param�tres du monde :
-	public final int maxWorldCol=32;
-	public final int maxWorldRow=24;
-	public final int worldWidth=TILE_SIZE*maxWorldCol;
-	public final int worldHeight=TILE_SIZE*maxWorldRow;
+	// param�tres du monde :
+	public final int maxWorldCol = 32;
+	public final int maxWorldRow = 24;
+	public final int worldWidth = TILE_SIZE * maxWorldCol;
+	public final int worldHeight = TILE_SIZE * maxWorldRow;
 
-
-	
 	// FPS : taux de rafraichissement
 	int m_FPS;
 
@@ -58,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public GamePanel() {
 		m_FPS = 60;
 		m_keyH = new KeyHandler();
-		m_player = new Player(this , m_keyH);
+		m_player = new Player(this, m_keyH);
 		m_tileM = new TileManager(this);
 		m_arme1 = new Armes(this, 2, 100, 100);
 		m_obstacle1 = new Obstacles(this, 100, 300);
@@ -137,7 +135,6 @@ public class GamePanel extends JPanel implements Runnable {
 		m_player.update();
 	}
 
-	
 	/**
 	 * Affichage des elements
 	 */
@@ -147,6 +144,8 @@ public class GamePanel extends JPanel implements Runnable {
 		if (m_player.getPvACTUAL() == 0) {
 			m_player.over(g2);
 		} else {
+			m_tileM.draw_mini_map(g2);
+			m_tileM.point_rouge(g2);
 			m_tileM.draw(g2);
 			m_player.draw(g2);
 			m_arme1.draw(g2);
