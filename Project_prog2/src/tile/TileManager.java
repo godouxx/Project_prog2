@@ -119,7 +119,15 @@ public class TileManager {
 			int screenX= worldX - m_gp.m_player.getM_x() +m_gp.m_player.screenX;
 			int screenY= worldY - m_gp.m_player.getM_y() +m_gp.m_player.screenY;
 
-			g2.drawImage(m_tile[tileNum].m_image, screenX, screenY, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+			//permet d'afficher seulement les tiles autour pour par dessiner toute la map a chaque fois
+			if (	   worldX + m_gp.TILE_SIZE > m_gp.m_player.getM_x() - m_gp.m_player.screenX
+                    && worldX - m_gp.TILE_SIZE < m_gp.m_player.getM_x() + m_gp.m_player.screenX
+                    && worldY + m_gp.TILE_SIZE > m_gp.m_player.getM_y() - m_gp.m_player.screenY
+                    && worldY - m_gp.TILE_SIZE < m_gp.m_player.getM_y() + m_gp.m_player.screenY) {
+				g2.drawImage(m_tile[tileNum].m_image, screenX, screenY, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+
+			}
+			
 			worldCol ++;
 			if (worldCol == m_gp.maxWorldCol) {
 				worldCol = 0;
