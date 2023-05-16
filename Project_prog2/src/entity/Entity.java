@@ -7,7 +7,11 @@ import java.awt.image.BufferedImage;
  *
  */
 public abstract class Entity {
-	public int m_x, m_y;				//position sur la map
-	public int m_speed;					//Déplacement de l'entité
-	public BufferedImage m_idleImage;	//Une image de l'entité
+	protected int m_x, m_y;				//position sur la map
+	protected int m_speed;					//Déplacement de l'entité
+	protected BufferedImage m_idleImage;	//Une image de l'entité
+	protected int size;
+	protected int pvMAX;
+	protected int pvACTUAL;
+	protected int degat;
 }
