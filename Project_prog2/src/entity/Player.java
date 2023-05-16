@@ -56,24 +56,51 @@ public class Player extends Entity {
 	/**
 	 * Mise ï¿½ jour des donnï¿½es du joueur
 	 */
+	@Override
 	public void update() {
-		for (int element : m_keyH.liste) {
-			System.out.println(element);
-			if (element == 90) {
-				goUpNext();
-			}
-			if (element == 83) {
-				goDownNext();
-			}
-			if (element == 81) {
-				goLeftNext();
-			}
-			if (element == 68) {
-				goRightNext();
-			}
-		}
+	    boolean goUp = false;
+	    boolean goDown = false;
+	    boolean goLeft = false;
+	    boolean goRight = false;
 
+	    for (int element : m_keyH.liste) {
+	        System.out.println(element);
+	        if (element == 90) {
+	            goUp = true;
+	        }
+	        if (element == 83) {
+	            goDown = true;
+	        }
+	        if (element == 81) {
+	            goLeft = true;
+	        }
+	        if (element == 68) {
+	            goRight = true;
+	        }
+	    }
+
+	    // Déplacement diagonal
+	    if (goUp && goLeft) {
+	        goUpLeftNext();
+	    } else if (goUp && goRight) {
+	        goUpRightNext();
+	    } else if (goDown && goLeft) {
+	        goDownLeftNext();
+	    } else if (goDown && goRight) {
+	        goDownRightNext();
+	    }
+	    // Déplacement vertical ou horizontal
+	    else if (goUp) {
+	        goUpNext();
+	    } else if (goDown) {
+	        goDownNext();
+	    } else if (goLeft) {
+	        goLeftNext();
+	    } else if (goRight) {
+	        goRightNext();
+	    }
 	}
+
 
 	public void goUpNext() {
 		this.m_y -= 1*m_speed;
@@ -92,11 +119,33 @@ public class Player extends Entity {
 		this.m_x += 1*m_speed;
 	}
 
+	public void goUpLeftNext() {
+	    this.m_y -= Math.sqrt(2)/2 * m_speed;
+	    this.m_x -= Math.sqrt(2)/2 * m_speed;
+	}
+
+	public void goUpRightNext() {
+	    this.m_y -= Math.sqrt(2)/2 * m_speed;
+	    this.m_x += Math.sqrt(2)/2 * m_speed;
+	}
+
+	public void goDownLeftNext() {
+	    this.m_y += Math.sqrt(2)/2 * m_speed;
+	    this.m_x -= Math.sqrt(2)/2 * m_speed;
+	}
+
+	public void goDownRightNext() {
+	    this.m_y += Math.sqrt(2)/2 * m_speed;
+	    this.m_x += Math.sqrt(2)/2 * m_speed;
+	}
+
+	
 	/**
 	 * Affichage du l'image du joueur dans la fenï¿½tre du jeu
 	 * 
 	 * @param a_g2 Graphics2D
 	 */
+	@Override
 	public void draw(Graphics2D a_g2) {
 		// rï¿½cupï¿½re l'image du joueur
 		BufferedImage l_image = m_idleImage;
