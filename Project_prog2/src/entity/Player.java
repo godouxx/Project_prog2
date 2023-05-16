@@ -46,6 +46,8 @@ public class Player extends Entity {
 		this.getGameOver();
 		screenX = a_gp.SCREEN_WIDTH / 2 - (a_gp.TILE_SIZE / 2);
 		screenY = a_gp.SCREEN_HEIGHT / 2 - (a_gp.TILE_SIZE / 2);
+		area_collision_y_default=area_collision.y;
+		area_collision_x_default=area_collision.x;
 	}
 
 	/**
@@ -115,11 +117,13 @@ public class Player extends Entity {
 				goRight = true;
 			}
 
-			collision = false;
-			this.m_gp.colisionVerif.checkTile(this);
 
 		}
 
+		collision = false;
+		this.m_gp.colisionVerif.checkTile(this);
+		this.m_gp.colisionVerif.checkObjet(this, true);
+		
 		if (collision == false) {
 
 			// Déplacement diagonal
