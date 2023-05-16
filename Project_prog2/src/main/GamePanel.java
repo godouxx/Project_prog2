@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public GamePanel() {
 		m_FPS = 60;
 		m_keyH = new KeyHandler();
-		m_player = new Player(this, m_keyH);
+		m_player = new Player(this , m_keyH);
 		m_tileM = new TileManager(this);
 		m_arme1 = new Armes(this, 2, 100, 100);
 		m_obstacle1 = new Obstacles(this, 100, 300);

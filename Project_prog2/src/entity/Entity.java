@@ -18,7 +18,6 @@ public abstract class Entity {
 	protected int degat;
 	public Rectangle area_collision;
 	public boolean collision;
-	public String direction;
 	public boolean goUp = false;
 	public boolean goDown = false;
 	public boolean goLeft = false;
