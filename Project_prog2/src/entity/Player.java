@@ -202,9 +202,11 @@ public class Player extends Entity {
 		
 			if(m_gp.objets.get(index) instanceof Armes) {
 				this.setDegat(this.degat+4);
-				
-				Rechange rechange = new Rechange(500,400);
-				m_gp.objets.set(index, rechange);
+				m_gp.objets.get(index).m_worldx=m_x;
+				m_gp.objets.get(index).m_worldy=m_x;
+
+				//Rechange rechange = new Rechange(500,400);
+				//m_gp.objets.set(index, rechange);
 			}
 			
 			if(m_gp.objets.get(index) instanceof Nourriture) {
