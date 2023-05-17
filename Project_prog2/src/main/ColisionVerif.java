@@ -70,8 +70,58 @@ public class ColisionVerif {
 		return index;
 	}
 
-	
+	public void checkTileMonster(Entity entity) {
+	    int x_g = entity.getM_x() + entity.area_collision.x;
+	    int x_d = entity.getM_x() + entity.area_collision.x + entity.area_collision.width;
+	    int y_g = entity.getM_y() + entity.area_collision.y;
+	    int y_d = entity.getM_y() + entity.area_collision.y + entity.area_collision.height;
 
+	    int entityLeftCol = x_g / gp.TILE_SIZE;
+	    int entityRightCol = x_d / gp.TILE_SIZE;
+	    int entityTopRow = y_g / gp.TILE_SIZE;
+	    int entityBottomRow = y_d / gp.TILE_SIZE;
+
+	    int tile1, tile2;
+
+	    if (entity.direction.equals("up")) {
+	       
+	        entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE;
+	        tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
+	        tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
+	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+	            entity.collision = true;
+	        
+	        }
+	    } else if (entity.direction.equals("right")) {
+	        entityRightCol = (x_d + entity.getM_speed()) / gp.TILE_SIZE;
+	        tile1 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
+	        tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
+	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+	            entity.collision = true;
+	           
+	        }
+	    } else if (entity.direction.equals("left")) {
+	        entityLeftCol = (x_g - entity.getM_speed()) / gp.TILE_SIZE;
+	        tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
+	        tile2 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
+	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+	            entity.collision = true;
+	        
+	        }
+	    } else if (entity.direction.equals("down")) {
+	        entityBottomRow = (y_d + entity.getM_speed()) / gp.TILE_SIZE;
+	        tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
+	        tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
+	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+	           
+	            entity.collision = true;
+	        }
+	    }
+	}
+
+	
+	
+	
 	public void checkTile(Entity entity) {
 		int x_g = entity.getM_x() + entity.area_collision.x;
 		int x_d = entity.getM_x() + entity.area_collision.x + entity.area_collision.width;
