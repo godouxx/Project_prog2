@@ -14,6 +14,7 @@ import tile.TileManager;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.beans.EventHandler;
 import java.util.ArrayList;
 
 /**
@@ -36,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxWorldRow = 24;
 	public final int worldWidth = TILE_SIZE * maxWorldCol;
 	public final int worldHeight = TILE_SIZE * maxWorldRow;
+	public int bloquer_action = 0;
 
 	// FPS : taux de rafraichissement
 	int m_FPS;
@@ -49,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
 	ArrayList<Entity> monstres;
 	public ArrayList<ObjetsPassifs> objets;
 	TileManager m_tileM;
-
+	public EventManager eventManagerr = new EventManager(this);
 	public ColisionVerif colisionVerif = new ColisionVerif(this);
 
 	/**
@@ -72,7 +74,8 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public void setupGame() {
-		createComponents.setComponents();
+		createComponents.setObjetsPassifs();
+		createComponents.setMonsters();
 	}
 
 	/**
@@ -117,20 +120,19 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	}
 
-	/*
-	 * m�j des monstres
-	 */
-	public void update_monstres() {
-		for (int i = 0; i < this.monstres.size(); i++) {
-			monstres.get(i).update();
-		}
-	}
-
 	/**
 	 * Mise � jour des donn�es des entit�s
 	 */
 	public void update() {
+		bloquer_action++;
 		m_player.update();
+		for(int i=0; i<monstres.size();i++) {
+			monstres.get(i).update();
+			System.out.println(monstres.get(0).direction);
+		}
+		if(bloquer_action==120) {
+			bloquer_action=0;
+		}
 	}
 
 	/**
@@ -142,9 +144,6 @@ public class GamePanel extends JPanel implements Runnable {
 		if (m_player.getPvACTUAL() == 0) {
 			m_player.over(g2);
 		} else {
-			
-			
-			
 
 			// DRAW LES TILES
 			m_tileM.draw(g2);
@@ -153,6 +152,10 @@ public class GamePanel extends JPanel implements Runnable {
 			// DRAW OBJECTS
 			for (int i = 0; i < objets.size(); i++) {
 				objets.get(i).draw(g2, this);
+			}
+			//DRAW MONSTERS
+			for (int i = 0; i < monstres.size(); i++) {
+				monstres.get(i).draw(g2,this);
 			}
 			// DRAW MINI MAP
 			m_tileM.draw_mini_map(g2);

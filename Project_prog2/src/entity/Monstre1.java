@@ -1,8 +1,10 @@
 package entity;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -19,11 +21,12 @@ public class Monstre1 extends Entity {
 		this.setM_y(Y);
 		this.setDefaultValues();
 		this.getMonstre1Image();
+		// length de 29 et wiegth de 24 sur l'image
+		this.area_collision = new Rectangle(0, 0, 29, 24);
+		this.area_collision_x_default = area_collision.x;
+		this.area_collision_y_default = area_collision.y;
 	}
 
-	@Override public void update() {
-		//setM_x(m_x+1);
-	}
 	public void getMonstre1Image() {
 		// gestion des expections
 		try {
@@ -32,21 +35,59 @@ public class Monstre1 extends Entity {
 			e.printStackTrace();
 		}
 	}
-	
+
 //utilisé dans le constructeur pour intialiser nos monstres avec les valeurs qui ne bougent pas
 	protected void setDefaultValues() {
 		setM_speed(monster1_info.speed);
 		setPvMAX(monster1_info.pvMAX);
 		setPvACTUAL(getPvMAX());
 	}
-	
-	
-	@Override public void draw(Graphics2D a_g2) {
-		// récupère l'image du joueur
-		BufferedImage l_image = m_idleImage;
-		// affiche le personnage avec l'image "image", avec les coordonnées x et y, et
-		// de taille tileSize (16x16) sans échelle, et 48x48 avec échelle)
-		a_g2.drawImage(l_image, m_x, m_y, m_gp.TILE_SIZE, m_gp.TILE_SIZE, null);
+
+	@Override
+	public void update() {
+		
+		Random random = new Random();
+		int i = random.nextInt(3);
+
+		if (m_gp.bloquer_action == 1) {
+			System.out.println("on entre dans le update");
+			if (i == 0) {
+				direction = "up";
+			}
+			if (i == 1) {
+				direction = "down";
+			}
+			if (i == 2) {
+				direction = "left";
+			}
+			if (i == 3) {
+				direction = "right";
+			}
+		}
+
+		if (direction == "up") {
+			goUpNext();
+		} else if (direction == "down") {
+			goDownNext();
+		} else if (direction == "left") {
+			goLeftNext();
+		} else if (direction == "right") {
+			goRightNext();
+		}
+
 	}
-	
+
+	@Override
+	public void draw(Graphics2D a_g2, GamePanel gp) {
+		int screenX = getM_x() - gp.m_player.getM_x() + gp.m_player.screenX;
+		int screenY = getM_y() - gp.m_player.getM_y() + gp.m_player.screenY;
+
+		if (getM_x() + gp.TILE_SIZE > gp.m_player.getM_x() - gp.m_player.screenX
+				&& getM_x() - gp.TILE_SIZE < gp.m_player.getM_x() + gp.m_player.screenX
+				&& getM_y() + gp.TILE_SIZE > gp.m_player.getM_y() - gp.m_player.screenY
+				&& getM_y() - gp.TILE_SIZE < gp.m_player.getM_y() + gp.m_player.screenY) {
+			a_g2.drawImage(m_idleImage, screenX, screenY, gp.TILE_SIZE, gp.TILE_SIZE, null);
+		}
+	}
+
 }

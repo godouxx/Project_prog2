@@ -33,6 +33,7 @@ public class ColisionVerif {
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
 						if(player == true) { index = i;}
+					//	System.out.print("collision up");
 					}
 				} else if (entity.goDown == true) {
 					entity.area_collision.y += entity.getM_speed();
