@@ -172,7 +172,7 @@ public class GamePanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		if (m_player.getPvACTUAL() == 0) {
+		if (m_player.getPvACTUAL() <= 0) {
 			m_player.over(g2);
 		} else {
 			if (win == false) {
