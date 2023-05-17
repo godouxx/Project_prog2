@@ -33,6 +33,8 @@ public class Player extends Entity {
 	BufferedImage heart_full;
 	BufferedImage game_over;
 	BufferedImage succes;
+	BufferedImage avec_epee;
+	boolean epee = false;
 
 	public final int screenX;
 	public final int screenY;
@@ -48,6 +50,7 @@ public class Player extends Entity {
 		this.m_keyH = a_keyH;
 		this.setDefaultValues();
 		this.getPlayerImage();
+		this.getPlayerImage_epee();
 		this.area_collision = new Rectangle(0, 0, 40, 40);
 		this.pvMAX = 6;
 		this.pvACTUAL = this.pvMAX;
@@ -76,11 +79,21 @@ public class Player extends Entity {
 	public void getPlayerImage() {
 		// gestion des expections
 		try {
-			m_idleImage = ImageIO.read(getClass().getResource("/Player/superhero.png"));
+			m_idleImage = ImageIO.read(getClass().getResource("/Player/sans_epee.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public void getPlayerImage_epee() {
+		// gestion des expections
+		try {
+			avec_epee = ImageIO.read(getClass().getResource("/Player/avec_epee.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	public void getHeartImage() {
 		try {
@@ -196,17 +209,16 @@ public class Player extends Entity {
 	
 	public void prendreObjet(int index) {
 		
-		System.out.println("index : " +index);
 		
 		if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
 		
 			if(m_gp.objets.get(index) instanceof Armes) {
 				this.setDegat(this.degat+4);
-				m_gp.objets.get(index).m_worldx=m_x;
-				m_gp.objets.get(index).m_worldy=m_x;
-
-				//Rechange rechange = new Rechange(500,400);
-				//m_gp.objets.set(index, rechange);
+				//m_gp.objets.get(index).m_worldx=m_x;
+				//m_gp.objets.get(index).m_worldy=m_x;
+				m_idleImage = avec_epee;
+				Rechange rechange = new Rechange(500,400);
+				m_gp.objets.set(index, rechange);
 			}
 			
 			if(m_gp.objets.get(index) instanceof Nourriture) {
