@@ -144,7 +144,6 @@ public class Player extends Entity {
 				goRight = true;
 				direction = "right";
 			}
-
 		}
 
 		collision = false;
@@ -202,11 +201,9 @@ public class Player extends Entity {
 		
 			if(m_gp.objets.get(index) instanceof Armes) {
 				this.setDegat(this.degat+4);
-				m_gp.objets.get(index).m_worldx=m_x;
-				m_gp.objets.get(index).m_worldy=m_x;
 
-				//Rechange rechange = new Rechange(500,400);
-				//m_gp.objets.set(index, rechange);
+				Rechange rechange = new Rechange(500,400);
+				m_gp.objets.set(index, rechange);
 			}
 			
 			if(m_gp.objets.get(index) instanceof Nourriture) {
@@ -237,11 +234,6 @@ public class Player extends Entity {
 			//m_gp.objets.set(index, rechange);
 		}
 	}
-<<<<<<< HEAD
- 
-	
-=======
->>>>>>> branch 'master' of https://github.com/godouxx/Project_prog2.git
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;

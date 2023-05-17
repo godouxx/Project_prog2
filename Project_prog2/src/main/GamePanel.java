@@ -141,31 +141,33 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		if (m_player.getPvACTUAL() == 0) {
-			m_player.over(g2);
-		} else {
-			if (win == false) {
-				// DRAW LES TILES
-			m_tileM.draw(g2);
-			// DRAW LE PLAYER
-			m_player.draw(g2);
-			// DRAW OBJECTS
-			for (int i = 0; i < objets.size(); i++) {
-				objets.get(i).draw(g2, this);
-			}
-			// DRAW MONSTERS
-			for (int i = 0; i < monstres.size(); i++) {
-				monstres.get(i).draw(g2, this);
-			}
-			// DRAW MINI MAP
-			m_tileM.draw_mini_map(g2);
-			// DRAW LE POINT DE LA MINIMAP
-			m_tileM.point_rouge(g2, m_player);
+		
+			if (m_player.getPvACTUAL() == 0) {
+				m_player.over(g2);
+			} else {
+				if (win == false) {
+					// DRAW LES TILES
+				m_tileM.draw(g2);
+				// DRAW LE PLAYER
+				m_player.draw(g2);
+				// DRAW OBJECTS
+				for (int i = 0; i < objets.size(); i++) {
+					objets.get(i).draw(g2, this);
+				}
+				// DRAW MONSTERS
+				for (int i = 0; i < monstres.size(); i++) {
+					monstres.get(i).draw(g2, this);
+				}
+				// DRAW MINI MAP
+				m_tileM.draw_mini_map(g2);
+				// DRAW LE POINT DE LA MINIMAP
+				m_tileM.point_rouge(g2, m_player);
 
-			g2.dispose();
+				g2.dispose();
+				}
+				else m_player.win(g2);
 			}
-			else m_player.win(g2);
-		}
+	
 
 	}
 
