@@ -160,11 +160,26 @@ public class Player extends Entity {
 
 		}
 
+		// boucle pour ne pas perdre toute la vie d'un coup contre un monstre
+		if (invincible == true) {
+			invincibleCompteur++;
+			if (invincibleCompteur > 90) {
+				invincible = false;
+				invincibleCompteur = 0;
+			}
+		}
+
 		collision = false;
 		this.m_gp.colisionVerif.checkTile(this);
 		int index = this.m_gp.colisionVerif.checkObjet(this, true);
 		prendreObjet(index);
-
+		boolean contactMonstre = m_gp.colisionVerif.checkPlayerMonstre(this, m_gp.monstres);
+		
+		if (contactMonstre) {
+		
+			this.takeDamage(2);
+		}
+		
 		if (collision == false) {
 
 			// D�placement diagonal
@@ -189,7 +204,6 @@ public class Player extends Entity {
 				goRightNext();
 			}
 
-
 //			System.out.println("dega : " + this.degat + ".");
 //			System.out.println("pv : " + this.getPvACTUAL());
 //			System.out.println("speed : " + this.getM_speed());
@@ -208,49 +222,48 @@ public class Player extends Entity {
 	}
 	
 	public void prendreObjet(int index) {
-		
-		
-		if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
-		
-			if(m_gp.objets.get(index) instanceof Armes) {
-				this.setDegat(this.degat+4);
-				//m_gp.objets.get(index).m_worldx=m_x;
-				//m_gp.objets.get(index).m_worldy=m_x;
-				m_idleImage = avec_epee;
-				Rechange rechange = new Rechange(500,400);
-				m_gp.objets.set(index, rechange);
-			}
-			
-			if(m_gp.objets.get(index) instanceof Nourriture) {
-				
-				if(this.getPvACTUAL() != this.getPvMAX()) { //ne pas avior plus que MaxPV
-					
-					this.setPvACTUAL(this.pvACTUAL+1);
-				}
-				Rechange rechange = new Rechange(500,400);
-				m_gp.objets.set(index, rechange);
-			}
-			
-			if(m_gp.objets.get(index) instanceof Obstacles) {
-	
-				this.collision = true;
-			}
-			
-			if(m_gp.objets.get(index) instanceof Speed) {
-				
-				this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
-				Rechange rechange = new Rechange(500,400);
-				m_gp.objets.set(index, rechange);
-			}
-			
-			//m_gp.objets.remove(index);
-			
-			//Rechange rechange = new Rechange(500,400);
-			//m_gp.objets.set(index, rechange);
-		}
-	}
- 
-	
+
+	        System.out.println("index : " +index);
+
+	        if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
+
+	            if(m_gp.objets.get(index) instanceof Armes) {
+	                this.setDegat(this.degat+4);
+	                m_gp.objets.get(index).m_worldx=m_x;
+	                m_gp.objets.get(index).m_worldy=m_x;
+
+	                //Rechange rechange = new Rechange(500,400);
+	                //m_gp.objets.set(index, rechange);
+	            }
+
+	            if(m_gp.objets.get(index) instanceof Nourriture) {
+
+	                if(this.getPvACTUAL() != this.getPvMAX()) { //ne pas avior plus que MaxPV
+
+	                    this.setPvACTUAL(this.pvACTUAL+1);
+	                }
+	                Rechange rechange = new Rechange(500,400);
+	                m_gp.objets.set(index, rechange);
+	            }
+
+	            if(m_gp.objets.get(index) instanceof Obstacles) {
+
+	                this.collision = true;
+	            }
+
+	            if(m_gp.objets.get(index) instanceof Speed) {
+
+	                this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
+	                Rechange rechange = new Rechange(500,400);
+	                m_gp.objets.set(index, rechange);
+	            }
+
+	            //m_gp.objets.remove(index);
+
+	            //Rechange rechange = new Rechange(500,400);
+	            //m_gp.objets.set(index, rechange);
+	        }
+	    }
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;
@@ -270,6 +283,14 @@ public class Player extends Entity {
 	public void goDownRightNext() {
 		this.m_y += Math.sqrt(2) / 2 * m_speed;
 		this.m_x += Math.sqrt(2) / 2 * m_speed;
+	}
+
+	public void takeDamage(int damage) {
+		if (invincible == false) {
+			this.pvACTUAL = this.pvACTUAL - damage;
+			invincible = true;
+		}
+
 	}
 
 	/**

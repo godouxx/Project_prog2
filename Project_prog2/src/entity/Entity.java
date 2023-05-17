@@ -29,6 +29,8 @@ public abstract class Entity {
 	public boolean goLeft = false;
 	public boolean goRight = false;
 	public int area_collision_x_default, area_collision_y_default;
+	public boolean invincible = false;
+	public int invincibleCompteur=0;
 
 	public int getM_x() {
 		return m_x;
