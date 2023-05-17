@@ -82,7 +82,7 @@ public class ColisionVerif {
 
 	public boolean checkPlayerMonstre(Entity entity, ArrayList<Entity> monstres) {
 		boolean contactPlayer = false;
-		for (int i = 0; i < gp.monstres.size(); i++) {
+		for (int i = 0; i < monstres.size(); i++) {
 			if (monstres.get(i) != null) {
 				// get solid area position du player
 				entity.area_collision.x = entity.getM_x() + entity.area_collision.x;
@@ -122,6 +122,9 @@ public class ColisionVerif {
 		return contactPlayer;
 	}
 
+	
+	
+	
 	public void checkTileMonster(Entity entity) {
 		int x_g = entity.getM_x() + entity.area_collision.x;
 		int x_d = entity.getM_x() + entity.area_collision.x + entity.area_collision.width;

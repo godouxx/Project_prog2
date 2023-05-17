@@ -49,7 +49,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public Player m_player;
 	public CreateComponents createComponents = new CreateComponents(this);
 	public CreateComponents2 createComponents2 = new CreateComponents2(this);
-	public ArrayList<Entity> monstres;
+	public ArrayList<Entity> monstres1;
+	public ArrayList<Entity> monstres2;
 
 	public ArrayList<ObjetsPassifs> objets;
 	TileManager m_tileM;
@@ -68,7 +69,8 @@ public class GamePanel extends JPanel implements Runnable {
 		m_player = new Player(this, m_keyH);
 		m_tileM = new TileManager(this);
 
-		monstres = new ArrayList<Entity>();
+		monstres1 = new ArrayList<Entity>();
+		monstres2 = new ArrayList<Entity>();
 		objets = new ArrayList<ObjetsPassifs>();
 
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
@@ -86,7 +88,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public void setupGame2() {
 		if (cpt == 0) {
 			createComponents.gp.objets.clear();
-			createComponents.gp.monstres.clear();
+			createComponents.gp.monstres1.clear();
+			createComponents.gp.monstres2.clear();
 			createComponents2.setObjetsPassifs();
 			createComponents2.setMonsters();
 		}
@@ -141,11 +144,16 @@ public class GamePanel extends JPanel implements Runnable {
 	public void update() {
 		bloquer_action++;
 		m_player.update();
-		for (int i = 0; i < monstres.size(); i++) {
-			if (monstres.get(i) != null) {
-				monstres.get(i).update();
+		for (int i = 0; i < monstres1.size(); i++) {
+			if (monstres1.get(i) != null) {
+				monstres1.get(i).update();
 			}
 
+		}
+		for (int i = 0; i < monstres2.size(); i++) {
+			if (monstres2.get(i) != null) {
+				monstres2.get(i).update();
+			}
 		}
 		if (bloquer_action == 120) {
 			bloquer_action = 0;
@@ -177,8 +185,12 @@ public class GamePanel extends JPanel implements Runnable {
 					objets.get(i).draw(g2, this);
 				}
 				// DRAW MONSTERS
-				for (int i = 0; i < monstres.size(); i++) {
-					monstres.get(i).draw(g2, this);
+				for (int i = 0; i < monstres1.size(); i++) {
+					monstres1.get(i).draw(g2, this);
+				}
+				
+				for (int i = 0; i < monstres2.size(); i++) {
+					monstres2.get(i).draw(g2, this);
 				}
 				// DRAW MINI MAP
 				m_tileM.draw_mini_map(g2);

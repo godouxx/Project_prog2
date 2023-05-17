@@ -71,8 +71,9 @@ public class CreateComponents {
 	}
 
 	public void setMonsters() {
-		gp.monstres.add(new Monstre1(gp, gp.TILE_SIZE * 10, gp.TILE_SIZE * 40));
-		gp.monstres.add(new Monstre1(gp, gp.TILE_SIZE * 25, gp.TILE_SIZE * 25));
+		gp.monstres1.add(new Monstre1(gp, gp.TILE_SIZE * 2, gp.TILE_SIZE * 2));
+		gp.monstres1.add(new Monstre1(gp, gp.TILE_SIZE * 10, gp.TILE_SIZE * 40));
+		gp.monstres1.add(new Monstre1(gp, gp.TILE_SIZE * 25, gp.TILE_SIZE * 25));
 //		gp.monstres.add(new Monstre1(gp, gp.TILE_SIZE*8, gp.TILE_SIZE*4));
 //		gp.monstres.add(new Monstre1(gp, gp.TILE_SIZE*8, gp.TILE_SIZE*4));
 //		gp.monstres.add(new Monstre1(gp, gp.TILE_SIZE*8, gp.TILE_SIZE*4));
