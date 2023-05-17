@@ -193,48 +193,55 @@ public class Player extends Entity {
 		goLeft = false;
 		goRight = false;
 	}
-
-
+	
 	public void prendreObjet(int index) {
+		
+		System.out.println("index : " +index);
+		
+		if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
+		
+			if(m_gp.objets.get(index) instanceof Armes) {
+				this.setDegat(this.degat+4);
+				m_gp.objets.get(index).m_worldx=m_x;
+				m_gp.objets.get(index).m_worldy=m_x;
 
-	     //  System.out.println("index : " +index);
-
-	        if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
-
-	            if(m_gp.objets.get(index) instanceof Armes) {
-	                this.setDegat(this.degat+4);
-
-	                Rechange rechange = new Rechange(500,400);
-	                m_gp.objets.set(index, rechange);
-	            }
-
-	            if(m_gp.objets.get(index) instanceof Nourriture) {
-
-	                if(this.getPvACTUAL() != this.getPvMAX()) { //ne pas avior plus que MaxPV
-
-	                    this.setPvACTUAL(this.pvACTUAL+1);
-	                }
-	                Rechange rechange = new Rechange(500,400);
-	                m_gp.objets.set(index, rechange);
-	            }
-
-	            if(m_gp.objets.get(index) instanceof Obstacles) {
-
-	            }
-
-	            if(m_gp.objets.get(index) instanceof Speed) {
-
-	                this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
-	                Rechange rechange = new Rechange(500,400);
-	                m_gp.objets.set(index, rechange);
-	            }
-
-	            //m_gp.objets.remove(index);
-
-	            //Rechange rechange = new Rechange(500,400);
-	            //m_gp.objets.set(index, rechange);
-	        }
-	    }
+				//Rechange rechange = new Rechange(500,400);
+				//m_gp.objets.set(index, rechange);
+			}
+			
+			if(m_gp.objets.get(index) instanceof Nourriture) {
+				
+				if(this.getPvACTUAL() != this.getPvMAX()) { //ne pas avior plus que MaxPV
+					
+					this.setPvACTUAL(this.pvACTUAL+1);
+				}
+				Rechange rechange = new Rechange(500,400);
+				m_gp.objets.set(index, rechange);
+			}
+			
+			if(m_gp.objets.get(index) instanceof Obstacles) {
+	
+				this.collision = true;
+			}
+			
+			if(m_gp.objets.get(index) instanceof Speed) {
+				
+				this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
+				Rechange rechange = new Rechange(500,400);
+				m_gp.objets.set(index, rechange);
+			}
+			
+			//m_gp.objets.remove(index);
+			
+			//Rechange rechange = new Rechange(500,400);
+			//m_gp.objets.set(index, rechange);
+		}
+	}
+<<<<<<< HEAD
+ 
+	
+=======
+>>>>>>> branch 'master' of https://github.com/godouxx/Project_prog2.git
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;
