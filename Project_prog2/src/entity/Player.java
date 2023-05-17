@@ -34,8 +34,10 @@ public class Player extends Entity {
 	BufferedImage game_over;
 	BufferedImage succes;
 	BufferedImage avec_epee;
+	BufferedImage attack;
 	boolean epee = false;
-
+	public Rectangle area_epee = new Rectangle(0, 0, 40, 40);
+	boolean attacking = false;
 	public final int screenX;
 	public final int screenY;
 
@@ -84,7 +86,7 @@ public class Player extends Entity {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void getPlayerImage_epee() {
 		// gestion des expections
 		try {
@@ -93,7 +95,15 @@ public class Player extends Entity {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void getPlayerImage_attack() {
+		// gestion des expections
+		try {
+			avec_epee = ImageIO.read(getClass().getResource("/Player/avec_epee.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void getHeartImage() {
 		try {
@@ -157,6 +167,9 @@ public class Player extends Entity {
 				goRight = true;
 				direction = "right";
 			}
+			if (element == 32) {
+				attacking = true;
+			}
 
 		}
 
@@ -168,18 +181,22 @@ public class Player extends Entity {
 				invincibleCompteur = 0;
 			}
 		}
+//ATTACK
+		if (attacking == true) {
+
+		}
 
 		collision = false;
 		this.m_gp.colisionVerif.checkTile(this);
 		int index = this.m_gp.colisionVerif.checkObjet(this, true);
 		prendreObjet(index);
 		boolean contactMonstre = m_gp.colisionVerif.checkPlayerMonstre(this, m_gp.monstres);
-		
+
 		if (contactMonstre) {
-		
+
 			this.takeDamage(2);
 		}
-		
+
 		if (collision == false) {
 
 			// Dï¿½placement diagonal
@@ -220,50 +237,57 @@ public class Player extends Entity {
 		goLeft = false;
 		goRight = false;
 	}
-	
+
 	public void prendreObjet(int index) {
 
-	        System.out.println("index : " +index);
+		if (index != 999 && index >= 0) { // si l'index est != de 999 cela signifie que l'on a toucher un objet
 
-	        if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
+			if (m_gp.objets.get(index) instanceof Armes) {
+				this.setDegat(this.degat + 4);
+				// m_gp.objets.get(index).m_worldx=m_x;
+				// m_gp.objets.get(index).m_worldy=m_x;
+				m_idleImage = avec_epee;
+				Rechange rechange = new Rechange(500, 400);
+				m_gp.objets.set(index, rechange);
+			}
 
-	            if(m_gp.objets.get(index) instanceof Armes) {
-	                this.setDegat(this.degat+4);
-	                m_gp.objets.get(index).m_worldx=m_x;
-	                m_gp.objets.get(index).m_worldy=m_x;
+			if (m_gp.objets.get(index) instanceof Nourriture) {
 
-	                //Rechange rechange = new Rechange(500,400);
-	                //m_gp.objets.set(index, rechange);
-	            }
+				if (this.getPvACTUAL() != this.getPvMAX()) { // ne pas avior plus que MaxPV
 
-	            if(m_gp.objets.get(index) instanceof Nourriture) {
+					this.setPvACTUAL(this.pvACTUAL + 1);
+				}
+				Rechange rechange = new Rechange(500, 400);
+				m_gp.objets.set(index, rechange);
+			}
 
-	                if(this.getPvACTUAL() != this.getPvMAX()) { //ne pas avior plus que MaxPV
+			if (m_gp.objets.get(index) instanceof Obstacles) {
 
-	                    this.setPvACTUAL(this.pvACTUAL+1);
-	                }
-	                Rechange rechange = new Rechange(500,400);
-	                m_gp.objets.set(index, rechange);
-	            }
+				this.collision = true;
+			}
 
-	            if(m_gp.objets.get(index) instanceof Obstacles) {
+			if (m_gp.objets.get(index) instanceof Speed) {
 
-	                this.collision = true;
-	            }
+				this.setM_speed(this.m_speed + 3); // m_gp.objets.getSpeedBonus()
+				Rechange rechange = new Rechange(500, 400);
+				m_gp.objets.set(index, rechange);
+			}
 
-	            if(m_gp.objets.get(index) instanceof Speed) {
+			// m_gp.objets.remove(index);
 
-	                this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
-	                Rechange rechange = new Rechange(500,400);
-	                m_gp.objets.set(index, rechange);
-	            }
+			// Rechange rechange = new Rechange(500,400);
+			// m_gp.objets.set(index, rechange);
+		}
+	}
 
-	            //m_gp.objets.remove(index);
-
-	            //Rechange rechange = new Rechange(500,400);
-	            //m_gp.objets.set(index, rechange);
-	        }
-	    }
+	//On met à jour l'area de notre rectangle pour qu'elle corresponde à l'area où on se situe
+	public void attacking() {
+		if(direction=="up") {
+			area_epee.x=m_x+m_gp.TILE_SIZE;
+			
+		}
+		
+	}
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;
