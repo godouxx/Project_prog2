@@ -38,6 +38,7 @@ public class CreateComponents2 {
 		gp.objets.add(new Speed(3, gp.TILE_SIZE * 11, gp.TILE_SIZE * 15));
 
 	}
+	
 
 	public void setMonsters() {
 		gp.monstres2.add(new Monstre1(gp, gp.TILE_SIZE * 7, gp.TILE_SIZE * 2));
