@@ -221,93 +221,46 @@ public class Player extends Entity {
 	}
 	
 	public void prendreObjet(int index) {
-<<<<<<< HEAD
-		
-		System.out.println("index : " +index);
-		
-		if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
-		
-			if(m_gp.objets.get(index) instanceof Armes) {
-				this.setDegat(this.degat+4);
-=======
->>>>>>> branch 'master' of https://github.com/godouxx/Project_prog2.git
 
-<<<<<<< HEAD
-				Rechange rechange = new Rechange(500,400);
-				m_gp.objets.set(index, rechange);
-			}
-			
-			if(m_gp.objets.get(index) instanceof Nourriture) {
-				
-				if(this.getPvACTUAL() != this.getPvMAX()) { //ne pas avior plus que MaxPV
-					
-					this.setPvACTUAL(this.pvACTUAL+1);
-				}
-				Rechange rechange = new Rechange(500,400);
-				m_gp.objets.set(index, rechange);
-			}
-			
-			if(m_gp.objets.get(index) instanceof Obstacles) {
-	
-				this.collision = true;
-			}
-			
-			if(m_gp.objets.get(index) instanceof Speed) {
-				
-				this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
-				Rechange rechange = new Rechange(500,400);
-				m_gp.objets.set(index, rechange);
-			}
-			
-			//m_gp.objets.remove(index);
-			
-			//Rechange rechange = new Rechange(500,400);
-			//m_gp.objets.set(index, rechange);
-		}
-	}
-=======
-	        System.out.println("index : " +index);
+        if (index != 999 && index >= 0) { // si l'index est != de 999 cela signifie que l'on a toucher un objet
 
-	        if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
+            if (m_gp.objets.get(index) instanceof Armes) {
+                this.setDegat(this.degat + 4);
+                // m_gp.objets.get(index).m_worldx=m_x;
+                // m_gp.objets.get(index).m_worldy=m_x;
+                m_idleImage = avec_epee;
+                Rechange rechange = new Rechange(500, 400);
+                m_gp.objets.set(index, rechange);
+            }
 
-	            if(m_gp.objets.get(index) instanceof Armes) {
-	                this.setDegat(this.degat+4);
-	                m_gp.objets.get(index).m_worldx=m_x;
-	                m_gp.objets.get(index).m_worldy=m_x;
+            if (m_gp.objets.get(index) instanceof Nourriture) {
 
-	                //Rechange rechange = new Rechange(500,400);
-	                //m_gp.objets.set(index, rechange);
-	            }
+                if (this.getPvACTUAL() != this.getPvMAX()) { // ne pas avior plus que MaxPV
 
-	            if(m_gp.objets.get(index) instanceof Nourriture) {
+                    this.setPvACTUAL(this.pvACTUAL + 1);
+                }
+                Rechange rechange = new Rechange(500, 400);
+                m_gp.objets.set(index, rechange);
+            }
 
-	                if(this.getPvACTUAL() != this.getPvMAX()) { //ne pas avior plus que MaxPV
+            if (m_gp.objets.get(index) instanceof Obstacles) {
 
-	                    this.setPvACTUAL(this.pvACTUAL+1);
-	                }
-	                Rechange rechange = new Rechange(500,400);
-	                m_gp.objets.set(index, rechange);
-	            }
+                this.collision = true;
+            }
 
-	            if(m_gp.objets.get(index) instanceof Obstacles) {
+            if (m_gp.objets.get(index) instanceof Speed) {
 
-	                this.collision = true;
-	            }
+                this.setM_speed(this.m_speed + 3); // m_gp.objets.getSpeedBonus()
+                Rechange rechange = new Rechange(500, 400);
+                m_gp.objets.set(index, rechange);
+            }
 
-	            if(m_gp.objets.get(index) instanceof Speed) {
+            // m_gp.objets.remove(index);
 
-	                this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
-	                Rechange rechange = new Rechange(500,400);
-	                m_gp.objets.set(index, rechange);
-	            }
-
-	            //m_gp.objets.remove(index);
-
-	            //Rechange rechange = new Rechange(500,400);
-	            //m_gp.objets.set(index, rechange);
-	        }
-	    }
->>>>>>> branch 'master' of https://github.com/godouxx/Project_prog2.git
+            // Rechange rechange = new Rechange(500,400);
+            // m_gp.objets.set(index, rechange);
+        }
+    }
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;

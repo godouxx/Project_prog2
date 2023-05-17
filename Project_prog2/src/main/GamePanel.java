@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Player m_player;
 	public CreateComponents createComponents = new CreateComponents(this);
 	public CreateComponents2 createComponents2 = new CreateComponents2(this);
-	ArrayList<Entity> monstres;
+	public ArrayList<Entity> monstres;
 
 	public ArrayList<ObjetsPassifs> objets;
 	TileManager m_tileM;
