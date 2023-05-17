@@ -53,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
 	TileManager m_tileM;
 	public EventManager eventManagerr = new EventManager(this);
 	public ColisionVerif colisionVerif = new ColisionVerif(this);
+	public boolean win = false;
 
 	/**
 	 * Constructeur
@@ -144,8 +145,8 @@ public class GamePanel extends JPanel implements Runnable {
 		if (m_player.getPvACTUAL() == 0) {
 			m_player.over(g2);
 		} else {
-
-			// DRAW LES TILES
+			if (win == false) {
+				// DRAW LES TILES
 			m_tileM.draw(g2);
 			// DRAW LE PLAYER
 			m_player.draw(g2);
@@ -163,6 +164,8 @@ public class GamePanel extends JPanel implements Runnable {
 			m_tileM.point_rouge(g2, m_player);
 
 			g2.dispose();
+			}
+			else m_player.win(g2);
 		}
 
 	}
