@@ -17,6 +17,7 @@ public class Obstacles extends ObjetsPassifs{
 		this.getObstaclesImage();
 		m_worldx = x;
 		m_worldy = y;
+		this.collision = true;
 	}
 	
 	void getObstaclesImage() { //recuperation image nourriture

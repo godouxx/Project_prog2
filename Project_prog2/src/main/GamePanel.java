@@ -54,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public EventManager eventManagerr = new EventManager(this);
 	public ColisionVerif colisionVerif = new ColisionVerif(this);
 	public boolean win = false;
+	public boolean changeMap = false;
 
 	/**
 	 * Constructeur
@@ -135,6 +136,9 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 		if (bloquer_action == 120) {
 			bloquer_action = 0;
+		}
+		if (changeMap == true) {
+			m_tileM.map2();
 		}
 	}
 
