@@ -128,12 +128,11 @@ public class GamePanel extends JPanel implements Runnable {
 	public void update() {
 		bloquer_action++;
 		m_player.update();
-		for(int i=0; i<monstres.size();i++) {
+		for (int i = 0; i < monstres.size(); i++) {
 			monstres.get(i).update();
-			System.out.println(monstres.get(0).direction);
 		}
-		if(bloquer_action==120) {
-			bloquer_action=0;
+		if (bloquer_action == 120) {
+			bloquer_action = 0;
 		}
 		if (changeMap == true) {
 			m_tileM.map2();
@@ -158,9 +157,9 @@ public class GamePanel extends JPanel implements Runnable {
 			for (int i = 0; i < objets.size(); i++) {
 				objets.get(i).draw(g2, this);
 			}
-			//DRAW MONSTERS
+			// DRAW MONSTERS
 			for (int i = 0; i < monstres.size(); i++) {
-				monstres.get(i).draw(g2,this);
+				monstres.get(i).draw(g2, this);
 			}
 			// DRAW MINI MAP
 			m_tileM.draw_mini_map(g2);
