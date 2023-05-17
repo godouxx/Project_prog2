@@ -179,11 +179,11 @@ public class Player extends Entity {
 			}
 
 			System.out.println("dega : " +this.degat +".");
-			System.out.println("pv : " +this.getPvACTUAL());
-			System.out.println("speed : " +this.getM_speed());
+			//System.out.println("pv : " +this.getPvACTUAL());
+			//System.out.println("speed : " +this.getM_speed());
 			
-			System.out.println(m_gp.objets);
-			System.out.println(m_gp.objets.get(2));
+			//System.out.println(m_gp.objets);
+			//System.out.println(m_gp.objets.get(2));
 		}
 
 		m_gp.eventManagerr.checkEvent();
@@ -201,17 +201,20 @@ public class Player extends Entity {
 		if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
 		
 			if(m_gp.objets.get(index) instanceof Armes) {
-				this.setDegat(this.degat+4);	
-				//m_gp.objets.remove(index); //supprime l'objet de la liste
+				this.setDegat(this.degat+4);
+				
+				Rechange rechange = new Rechange(500,400);
+				m_gp.objets.set(index, rechange);
 			}
 			
 			if(m_gp.objets.get(index) instanceof Nourriture) {
 				
-				if(this.getPvACTUAL() != this.getPvMAX()) {
+				if(this.getPvACTUAL() != this.getPvMAX()) { //ne pas avior plus que MaxPV
 					
 					this.setPvACTUAL(this.pvACTUAL+1);
 				}
-				//m_gp.objets.remove(index); //supprime l'objet de la liste
+				Rechange rechange = new Rechange(500,400);
+				m_gp.objets.set(index, rechange);
 			}
 			
 			if(m_gp.objets.get(index) instanceof Obstacles) {
@@ -221,12 +224,14 @@ public class Player extends Entity {
 			if(m_gp.objets.get(index) instanceof Speed) {
 				
 				this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
-				//m_gp.objets.remove(index); //supprime l'objet de la liste
+				Rechange rechange = new Rechange(500,400);
+				m_gp.objets.set(index, rechange);
 			}
 			
 			//m_gp.objets.remove(index);
-			Rechange rechange = new Rechange(500,400);
-			m_gp.objets.set(index, rechange);
+			
+			//Rechange rechange = new Rechange(500,400);
+			//m_gp.objets.set(index, rechange);
 		}
 	}
 
