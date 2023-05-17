@@ -35,7 +35,7 @@ public class TileManager {
 		m_tile = new Tile[m_maxTiles];
 		m_mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 		this.getTileImage();
-		this.loadMap("/maps/map2.txt");
+		this.loadMap("/maps/map.txt");
 		this.getMiniMap();
         this.getPointRouge();
 	}
@@ -89,8 +89,8 @@ public class TileManager {
 			m_tile[4].m_collision=false;
 			
 			m_tile[5] = new Tile();
-			m_tile[5].m_image = ImageIO.read(getClass().getResource("/tiles/SNOW.png"));
-			m_tile[5].m_collision=false;
+			m_tile[5].m_image = ImageIO.read(getClass().getResource("/tiles/TREE.png"));
+			m_tile[5].m_collision=true;
 			
 		} catch (IOException e) {
 			e.printStackTrace();
