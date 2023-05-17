@@ -219,6 +219,7 @@ public class Player extends Entity {
 			
 			if(m_gp.objets.get(index) instanceof Obstacles) {
 	
+				this.collision = true;
 			}
 			
 			if(m_gp.objets.get(index) instanceof Speed) {
@@ -234,7 +235,7 @@ public class Player extends Entity {
 			//m_gp.objets.set(index, rechange);
 		}
 	}
-
+ 
 	
 
 	public void goUpLeftNext() {
