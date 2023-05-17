@@ -34,7 +34,7 @@ public class EventManager {
 			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
 		}
-		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "left") == true) {
+		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "left")) {
 			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
 		}
@@ -46,18 +46,22 @@ public class EventManager {
 		if (hit(door_info.position_x, door_info.position_y, "up")) {
 			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
+			gp.changeMap = true;
 		}
 		if (hit(door_info.position_x, door_info.position_y, "down")) {
 			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
+			gp.changeMap = true;
 		}
-		if (hit(door_info.position_x, door_info.position_y, "left") == true) {
+		if (hit(door_info.position_x, door_info.position_y, "left")) {
 			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
+			gp.changeMap = true;
 		}
 		if (hit(door_info.position_x, door_info.position_y, "right")) {
 			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
+			gp.changeMap = true;
 		}
 	}
 

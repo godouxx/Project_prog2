@@ -40,6 +40,10 @@ public class TileManager {
         this.getPointRouge();
 	}
 	
+	public void map2() {
+		loadMap("/maps/ma2.txt");
+	}
+	
 	public void getMiniMap() {
         try {
             im_mini_map = ImageIO.read(getClass().getResource("/maps/mini_map.png"));
