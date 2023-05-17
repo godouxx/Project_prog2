@@ -176,12 +176,14 @@ public class Player extends Entity {
 				goRightNext();
 			}
 
+
 //			System.out.println("dega : " + this.degat + ".");
 //			System.out.println("pv : " + this.getPvACTUAL());
 //			System.out.println("speed : " + this.getM_speed());
 //
 //			System.out.println(m_gp.objets);
 //			System.out.println(m_gp.objets.get(2));
+
 		}
 
 		m_gp.eventManagerr.checkEvent();
@@ -192,41 +194,47 @@ public class Player extends Entity {
 		goRight = false;
 	}
 
+
 	public void prendreObjet(int index) {
 
-//		System.out.println("index : " + index);
+	     //  System.out.println("index : " +index);
 
-		if (index != 999 && index >= 0) { // si l'index est != de 999 cela signifie que l'on a toucher un objet
+	        if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
 
-			if (m_gp.objets.get(index) instanceof Armes) {
-				this.setDegat(this.degat + 4);
-				// m_gp.objets.remove(index); //supprime l'objet de la liste
-			}
+	            if(m_gp.objets.get(index) instanceof Armes) {
+	                this.setDegat(this.degat+4);
 
-			if (m_gp.objets.get(index) instanceof Nourriture) {
+	                Rechange rechange = new Rechange(500,400);
+	                m_gp.objets.set(index, rechange);
+	            }
 
-				if (this.getPvACTUAL() != this.getPvMAX()) {
+	            if(m_gp.objets.get(index) instanceof Nourriture) {
 
-					this.setPvACTUAL(this.pvACTUAL + 1);
-				}
-				// m_gp.objets.remove(index); //supprime l'objet de la liste
-			}
+	                if(this.getPvACTUAL() != this.getPvMAX()) { //ne pas avior plus que MaxPV
 
-			if (m_gp.objets.get(index) instanceof Obstacles) {
+	                    this.setPvACTUAL(this.pvACTUAL+1);
+	                }
+	                Rechange rechange = new Rechange(500,400);
+	                m_gp.objets.set(index, rechange);
+	            }
 
-			}
+	            if(m_gp.objets.get(index) instanceof Obstacles) {
 
-			if (m_gp.objets.get(index) instanceof Speed) {
+	            }
 
-				this.setM_speed(this.m_speed + 3); // m_gp.objets.getSpeedBonus()
-				// m_gp.objets.remove(index); //supprime l'objet de la liste
-			}
+	            if(m_gp.objets.get(index) instanceof Speed) {
 
-			// m_gp.objets.remove(index);
-			Rechange rechange = new Rechange(500, 400);
-			m_gp.objets.set(index, rechange);
-		}
-	}
+	                this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
+	                Rechange rechange = new Rechange(500,400);
+	                m_gp.objets.set(index, rechange);
+	            }
+
+	            //m_gp.objets.remove(index);
+
+	            //Rechange rechange = new Rechange(500,400);
+	            //m_gp.objets.set(index, rechange);
+	        }
+	    }
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;
