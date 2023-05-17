@@ -24,6 +24,7 @@ public class Player extends Entity {
 	BufferedImage heart_half;
 	BufferedImage heart_full;
 	BufferedImage game_over;
+	BufferedImage succes;
 
 	public final int screenX;
 	public final int screenY;
@@ -45,6 +46,7 @@ public class Player extends Entity {
 		this.direction="down";
 		this.getHeartImage();
 		this.getGameOver();
+		this.getSucces();
 		screenX = a_gp.SCREEN_WIDTH / 2 - (a_gp.TILE_SIZE / 2);
 		screenY = a_gp.SCREEN_HEIGHT / 2 - (a_gp.TILE_SIZE / 2);
 		area_collision_y_default=area_collision.y;
@@ -96,6 +98,18 @@ public class Player extends Entity {
 	public void over(Graphics2D a_g2) {
 		a_g2.drawImage(game_over, m_gp.SCREEN_WIDTH / 4, m_gp.SCREEN_HEIGHT / 4, 400, 400, null);
 	}
+	
+	public void getSucces() {
+		try {
+			succes = ImageIO.read(getClass().getResource("/ecran_fin/succes.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void win(Graphics2D a_g2) {
+		a_g2.drawImage(succes, m_gp.SCREEN_WIDTH / 4, m_gp.SCREEN_HEIGHT / 4, 400, 400, null);
+	}
 
 	/**
 	 * Mise ï¿½ jour des donnï¿½es du joueur
@@ -132,7 +146,7 @@ public class Player extends Entity {
 		
 		if (collision == false) {
 
-			// Déplacement diagonal
+			// Dï¿½placement diagonal
 
 			if (goUp && goLeft) {
 				goUpLeftNext();
