@@ -12,17 +12,17 @@ import main.ColisionVerif;
 import main.GamePanel;
 import monster.monster1_info;
 
-public class Monstre1 extends Entity {
+public class Monstre2 extends Entity {
 	private GamePanel m_gp;
 
 //constructeur de monstre
-	public Monstre1(GamePanel a_gp, int X, int Y) {
+	public Monstre2(GamePanel a_gp, int X, int Y) {
 		this.m_gp = a_gp;
 		this.setM_x(X);
 		this.setM_y(Y);
 		this.setDefaultValues();
 		this.getMonstre1Image();
-		this.setDegat(2);
+		this.setDegat(1);
 		// length de 29 et wiegth de 24 sur l'image
 		this.area_collision = new Rectangle(0, 0, 29, 24);
 		this.area_collision_x_default = area_collision.x;
@@ -32,13 +32,13 @@ public class Monstre1 extends Entity {
 	public void getMonstre1Image() {
 		// gestion des expections
 		try {
-			m_idleImage = ImageIO.read(getClass().getResource("/monster/monster1.png"));
+			m_idleImage = ImageIO.read(getClass().getResource("/monster/monster2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-//utilisé dans le constructeur pour intialiser nos monstres avec les valeurs qui ne bougent pas
+//utilisï¿½ dans le constructeur pour intialiser nos monstres avec les valeurs qui ne bougent pas
 	protected void setDefaultValues() {
 		setM_speed(monster1_info.speed);
 		setPvMAX(monster1_info.pvMAX);

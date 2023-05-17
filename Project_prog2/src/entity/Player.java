@@ -190,13 +190,16 @@ public class Player extends Entity {
 		this.m_gp.colisionVerif.checkTile(this);
 		int index = this.m_gp.colisionVerif.checkObjet(this, true);
 		prendreObjet(index);
-		boolean contactMonstre = m_gp.colisionVerif.checkPlayerMonstre(this, m_gp.monstres);
+		boolean contactMonstre1 = m_gp.colisionVerif.checkPlayerMonstre(this, m_gp.monstres1);
+		boolean contactMonstre2 = m_gp.colisionVerif.checkPlayerMonstre(this, m_gp.monstres2);
+		if (contactMonstre1) {
 
-		if (contactMonstre) {
+			this.takeDamage(1);
+		}
+		if (contactMonstre2) {
 
 			this.takeDamage(2);
 		}
-
 		if (collision == false) {
 
 			// D�placement diagonal
