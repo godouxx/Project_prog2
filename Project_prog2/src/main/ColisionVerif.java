@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import entity.Entity;
 
 public class ColisionVerif {
@@ -32,28 +34,36 @@ public class ColisionVerif {
 					entity.area_collision.y -= entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						if(player == true) { index = i;}
-					//	System.out.print("collision up");
+						if (player == true) {
+							index = i;
+						}
+						// System.out.print("collision up");
 					}
 				} else if (entity.goDown == true) {
 					entity.area_collision.y += entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						if(player == true) { index = i;}
+						if (player == true) {
+							index = i;
+						}
 					}
 
 				} else if (entity.goLeft == true) {
 					entity.area_collision.x -= entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						if(player == true) { index = i;}
+						if (player == true) {
+							index = i;
+						}
 					}
 
 				} else if (entity.goRight == true) {
 					entity.area_collision.x += entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						if(player == true) { index = i;}
+						if (player == true) {
+							index = i;
+						}
 					}
 				}
 				// reinitialisation area entite et objet
@@ -66,62 +76,105 @@ public class ColisionVerif {
 			}
 
 		}
-		
+
 		return index;
 	}
 
-	public void checkTileMonster(Entity entity) {
-	    int x_g = entity.getM_x() + entity.area_collision.x;
-	    int x_d = entity.getM_x() + entity.area_collision.x + entity.area_collision.width;
-	    int y_g = entity.getM_y() + entity.area_collision.y;
-	    int y_d = entity.getM_y() + entity.area_collision.y + entity.area_collision.height;
+	public boolean checkPlayerMonstre(Entity entity, ArrayList<Entity> monstres) {
+		boolean contactPlayer = false;
+		for (int i = 0; i < gp.monstres.size(); i++) {
+			if (monstres.get(i) != null) {
+				// get solid area position du player
+				entity.area_collision.x = entity.getM_x() + entity.area_collision.x;
+				entity.area_collision.y = entity.getM_y() + entity.area_collision.y;
 
-	    int entityLeftCol = x_g / gp.TILE_SIZE;
-	    int entityRightCol = x_d / gp.TILE_SIZE;
-	    int entityTopRow = y_g / gp.TILE_SIZE;
-	    int entityBottomRow = y_d / gp.TILE_SIZE;
+				// get solid area position de l'objet
+				monstres.get(i).area_collision.x = monstres.get(i).getM_x() + monstres.get(i).area_collision.x;
+				monstres.get(i).area_collision.y = monstres.get(i).getM_y() + monstres.get(i).area_collision.y;
 
-	    int tile1, tile2;
+				// ou va aller le player
 
-	    if (entity.direction.equals("up")) {
-	       
-	        entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE;
-	        tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
-	        tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
-	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
-	            entity.collision = true;
-	        
-	        }
-	    } else if (entity.direction.equals("right")) {
-	        entityRightCol = (x_d + entity.getM_speed()) / gp.TILE_SIZE;
-	        tile1 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
-	        tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
-	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
-	            entity.collision = true;
-	           
-	        }
-	    } else if (entity.direction.equals("left")) {
-	        entityLeftCol = (x_g - entity.getM_speed()) / gp.TILE_SIZE;
-	        tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
-	        tile2 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
-	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
-	            entity.collision = true;
-	        
-	        }
-	    } else if (entity.direction.equals("down")) {
-	        entityBottomRow = (y_d + entity.getM_speed()) / gp.TILE_SIZE;
-	        tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
-	        tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
-	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
-	           
-	            entity.collision = true;
-	        }
-	    }
+				if (entity.goUp == true) {
+					entity.area_collision.y -= entity.getM_speed();
+
+				} else if (entity.goDown == true) {
+					entity.area_collision.y += entity.getM_speed();
+
+				} else if (entity.goLeft == true) {
+					entity.area_collision.x -= entity.getM_speed();
+
+				} else if (entity.goRight == true) {
+					entity.area_collision.x += entity.getM_speed();
+				}
+				if (entity.area_collision.intersects(monstres.get(i).area_collision)) {
+					entity.collision = true;
+					contactPlayer = true;
+				}
+
+				// reinitialisation area entite et objet
+				entity.area_collision.x = entity.area_collision_x_default;
+				entity.area_collision.y = entity.area_collision_y_default;
+
+				monstres.get(i).area_collision.x = monstres.get(i).area_collision_x_default;
+				monstres.get(i).area_collision.y = monstres.get(i).area_collision_y_default;
+			}
+		}
+		return contactPlayer;
 	}
 
-	
-	
-	
+	public void checkTileMonster(Entity entity) {
+		int x_g = entity.getM_x() + entity.area_collision.x;
+		int x_d = entity.getM_x() + entity.area_collision.x + entity.area_collision.width;
+		int y_g = entity.getM_y() + entity.area_collision.y;
+		int y_d = entity.getM_y() + entity.area_collision.y + entity.area_collision.height;
+
+		int entityLeftCol = x_g / gp.TILE_SIZE;
+		int entityRightCol = x_d / gp.TILE_SIZE;
+		int entityTopRow = y_g / gp.TILE_SIZE;
+		int entityBottomRow = y_d / gp.TILE_SIZE;
+
+		int tile1 = 0, tile2 = 0;
+
+		if (entity.direction.equals("up")) {
+
+			entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE;
+			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
+			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
+			if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+				entity.collision = true;
+
+			}
+		} else if (entity.direction.equals("right")) {
+			entityRightCol = (x_d + entity.getM_speed()) / gp.TILE_SIZE;
+			tile1 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
+			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
+			if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+				entity.collision = true;
+
+			}
+		} else if (entity.direction.equals("left")) {
+			entityLeftCol = (x_g - entity.getM_speed()) / gp.TILE_SIZE;
+			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
+			tile2 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
+			if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+				entity.collision = true;
+
+			}
+		} else if (entity.direction.equals("down")) {
+			entityBottomRow = (y_d + entity.getM_speed()) / gp.TILE_SIZE;
+			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
+			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
+			if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
+
+				entity.collision = true;
+			}
+		}
+
+		entity.area_collision.x = entity.area_collision_x_default;
+		entity.area_collision.y = entity.area_collision_y_default;
+
+	}
+
 	public void checkTile(Entity entity) {
 		int x_g = entity.getM_x() + entity.area_collision.x;
 		int x_d = entity.getM_x() + entity.area_collision.x + entity.area_collision.width;
@@ -133,7 +186,7 @@ public class ColisionVerif {
 		int entityTopRow = y_g / gp.TILE_SIZE;
 		int entityBottomRow = y_d / gp.TILE_SIZE;
 
-		int tile1, tile2;
+		int tile1 = 0, tile2 = 0;
 //on verifie si on est en collision avec un obstacle en bas a gauche
 		if (entity.goDown == true && entity.goLeft) {
 			entityBottomRow = (y_d + entity.getM_speed()) / gp.TILE_SIZE;
