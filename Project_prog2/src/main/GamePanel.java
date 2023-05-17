@@ -171,6 +171,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+
 		if (m_player.getPvACTUAL() == 0) {
 			m_player.over(g2);
 		} else {
@@ -197,10 +198,8 @@ public class GamePanel extends JPanel implements Runnable {
 				m_tileM.point_rouge(g2, m_player);
 
 				g2.dispose();
+
 			} else
-				m_player.win(g2);
+				m_player.win(g2);}
 		}
-
 	}
-
-}
