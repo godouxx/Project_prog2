@@ -27,18 +27,24 @@ public class EventManager {
 		}
 		// permet de faire une tï¿½lï¿½portation
 		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "up")) {
+			System.out.println("on se téléporte");
 			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
 		}
 		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "down")) {
+			System.out.println("on se téléporte");
 			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
 		}
 		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "left")) {
+
+			System.out.println("on se téléporte");
+
 			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
 		}
 		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "right")) {
+			System.out.println("on se téléporte");
 			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
 		}
@@ -51,7 +57,7 @@ public class EventManager {
 			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
 		}
-		if (hit(door_info.position_x, door_info.position_y, "left") == true) {
+		if (hit(door_info.position_x, door_info.position_y, "left")) {
 			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
 		}

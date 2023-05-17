@@ -2,7 +2,6 @@ package entity;
 
 import java.awt.Color;
 
-
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -52,14 +51,14 @@ public class Player extends Entity {
 		this.area_collision = new Rectangle(0, 0, 40, 40);
 		this.pvMAX = 6;
 		this.pvACTUAL = this.pvMAX;
-		this.direction="down";
+		this.direction = "down";
 		this.getHeartImage();
 		this.getGameOver();
 		this.getSucces();
 		screenX = a_gp.SCREEN_WIDTH / 2 - (a_gp.TILE_SIZE / 2);
 		screenY = a_gp.SCREEN_HEIGHT / 2 - (a_gp.TILE_SIZE / 2);
-		area_collision_y_default=area_collision.y;
-		area_collision_x_default=area_collision.x;
+		area_collision_y_default = area_collision.y;
+		area_collision_x_default = area_collision.x;
 	}
 
 	/**
@@ -107,7 +106,7 @@ public class Player extends Entity {
 	public void over(Graphics2D a_g2) {
 		a_g2.drawImage(game_over, m_gp.SCREEN_WIDTH / 4, m_gp.SCREEN_HEIGHT / 4, 400, 400, null);
 	}
-	
+
 	public void getSucces() {
 		try {
 			succes = ImageIO.read(getClass().getResource("/ecran_fin/succes.png"));
@@ -125,27 +124,26 @@ public class Player extends Entity {
 	 */
 	@Override
 	public void update() {
-	
+
 		for (int element : m_keyH.liste) {
-			
+
 			if (element == 90) {
 				goUp = true;
-				direction="up";
-				
+				direction = "up";
+
 			}
 			if (element == 83) {
 				goDown = true;
-				direction="down";
+				direction = "down";
 			}
 			if (element == 81) {
 				goLeft = true;
-				direction="left";
+				direction = "left";
 			}
 			if (element == 68) {
 				goRight = true;
-				direction="right";
+				direction = "right";
 			}
-
 
 		}
 
@@ -153,7 +151,7 @@ public class Player extends Entity {
 		this.m_gp.colisionVerif.checkTile(this);
 		int index = this.m_gp.colisionVerif.checkObjet(this, true);
 		prendreObjet(index);
-		
+
 		if (collision == false) {
 
 			// D�placement diagonal
@@ -178,16 +176,18 @@ public class Player extends Entity {
 				goRightNext();
 			}
 
-			System.out.println("dega : " +this.degat +".");
-			//System.out.println("pv : " +this.getPvACTUAL());
-			//System.out.println("speed : " +this.getM_speed());
-			
-			//System.out.println(m_gp.objets);
-			//System.out.println(m_gp.objets.get(2));
+
+//			System.out.println("dega : " + this.degat + ".");
+//			System.out.println("pv : " + this.getPvACTUAL());
+//			System.out.println("speed : " + this.getM_speed());
+//
+//			System.out.println(m_gp.objets);
+//			System.out.println(m_gp.objets.get(2));
+
 		}
 
 		m_gp.eventManagerr.checkEvent();
-		
+
 		goUp = false;
 		goDown = false;
 		goLeft = false;
@@ -202,9 +202,11 @@ public class Player extends Entity {
 		
 			if(m_gp.objets.get(index) instanceof Armes) {
 				this.setDegat(this.degat+4);
-				
-				Rechange rechange = new Rechange(500,400);
-				m_gp.objets.set(index, rechange);
+				m_gp.objets.get(index).m_worldx=m_x;
+				m_gp.objets.get(index).m_worldy=m_x;
+
+				//Rechange rechange = new Rechange(500,400);
+				//m_gp.objets.set(index, rechange);
 			}
 			
 			if(m_gp.objets.get(index) instanceof Nourriture) {
@@ -235,8 +237,11 @@ public class Player extends Entity {
 			//m_gp.objets.set(index, rechange);
 		}
 	}
+<<<<<<< HEAD
  
 	
+=======
+>>>>>>> branch 'master' of https://github.com/godouxx/Project_prog2.git
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;

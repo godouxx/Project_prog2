@@ -8,6 +8,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import main.ColisionVerif;
 import main.GamePanel;
 import monster.monster1_info;
 
@@ -21,8 +22,9 @@ public class Monstre1 extends Entity {
 		this.setM_y(Y);
 		this.setDefaultValues();
 		this.getMonstre1Image();
+
 		// length de 29 et wiegth de 24 sur l'image
-		this.area_collision = new Rectangle(0, 0, 29, 24);
+		this.area_collision = new Rectangle(0, 0, 24, 29);
 		this.area_collision_x_default = area_collision.x;
 		this.area_collision_y_default = area_collision.y;
 	}
@@ -45,34 +47,47 @@ public class Monstre1 extends Entity {
 
 	@Override
 	public void update() {
-		
-		Random random = new Random();
-		int i = random.nextInt(3);
 
+		Random random = new Random();
+
+		int i = random.nextInt(3);
+//On change de direction toutes les 2 secondes
 		if (m_gp.bloquer_action == 1) {
-			System.out.println("on entre dans le update");
+
 			if (i == 0) {
 				direction = "up";
+
 			}
 			if (i == 1) {
 				direction = "down";
+
 			}
 			if (i == 2) {
 				direction = "left";
+
 			}
 			if (i == 3) {
 				direction = "right";
 			}
 		}
-
-		if (direction == "up") {
-			goUpNext();
-		} else if (direction == "down") {
-			goDownNext();
-		} else if (direction == "left") {
-			goLeftNext();
-		} else if (direction == "right") {
-			goRightNext();
+		
+		collision = false;
+		this.m_gp.colisionVerif.checkTileMonster(this);
+		
+		if (collision == false) {
+			if (direction == "up") {
+				goUpNext();
+				//System.out.println("up");
+			} else if (direction == "down") {
+				goDownNext();
+				//System.out.println("down");
+			} else if (direction == "left") {
+				goLeftNext();
+				//System.out.println("left");
+			} else if (direction == "right") {
+				goRightNext();
+				//System.out.println("right");
+			}
 		}
 
 	}
