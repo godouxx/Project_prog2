@@ -1,6 +1,8 @@
 package entity;
 
 import java.awt.Color;
+
+
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -10,6 +12,13 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
+import objetspassifs.Armes;
+import objetspassifs.Nourriture;
+import objetspassifs.ObjetsPassifs;
+import objetspassifs.Obstacles;
+import objetspassifs.Speed;
+import objetspassifs.Rechange;
+import main.ColisionVerif;
 import tile.Tile;
 
 /**
@@ -122,11 +131,12 @@ public class Player extends Entity {
 
 		collision = false;
 		this.m_gp.colisionVerif.checkTile(this);
-		this.m_gp.colisionVerif.checkObjet(this, true);
+		int index = this.m_gp.colisionVerif.checkObjet(this, true);
+		prendreObjet(index);
 		
 		if (collision == false) {
 
-			// Déplacement diagonal
+			// Dï¿½placement diagonal
 
 			if (goUp && goLeft) {
 				goUpLeftNext();
@@ -148,12 +158,54 @@ public class Player extends Entity {
 				goRightNext();
 			}
 
+			System.out.println("dega : " +this.degat +".");
+			System.out.println("pv : " +this.getPvACTUAL());
+			System.out.println("speed : " +this.getM_speed());
+			
+			System.out.println(m_gp.objets);
+			System.out.println(m_gp.objets.get(2));
 		}
 
 		goUp = false;
 		goDown = false;
 		goLeft = false;
 		goRight = false;
+	}
+	
+	public void prendreObjet(int index) {
+		
+		System.out.println("index : " +index);
+		
+		if(index != 999 && index>=0) { //si l'index est != de 999 cela signifie que l'on a toucher un objet
+		
+			if(m_gp.objets.get(index) instanceof Armes) {
+				this.setDegat(this.degat+4);	
+				//m_gp.objets.remove(index); //supprime l'objet de la liste
+			}
+			
+			if(m_gp.objets.get(index) instanceof Nourriture) {
+				
+				if(this.getPvACTUAL() != this.getPvMAX()) {
+					
+					this.setPvACTUAL(this.pvACTUAL+1);
+				}
+				//m_gp.objets.remove(index); //supprime l'objet de la liste
+			}
+			
+			if(m_gp.objets.get(index) instanceof Obstacles) {
+	
+			}
+			
+			if(m_gp.objets.get(index) instanceof Speed) {
+				
+				this.setM_speed(this.m_speed+3);   //m_gp.objets.getSpeedBonus()
+				//m_gp.objets.remove(index); //supprime l'objet de la liste
+			}
+			
+			//m_gp.objets.remove(index);
+			Rechange rechange = new Rechange(500,400);
+			m_gp.objets.set(index, rechange);
+		}
 	}
 
 	public void goUpNext() {
