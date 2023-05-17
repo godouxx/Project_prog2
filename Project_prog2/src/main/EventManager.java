@@ -21,23 +21,14 @@ public class EventManager {
 	}
 
 	public void checkEvent() {
+		System.out.println(gp.m_player.getM_x() / (16 * 3));
+		System.out.println(gp.m_player.getM_y() / (16 * 3));
 		// permet de cr�er un pi�ge si on est sur la 4�me ligne 5�me colonne on
 		// peut
 		// changer les PV par exemple
 		// permet de faire une t�l�portation
-		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "up")) {
-			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
-			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
-		}
-		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "down")) {
-			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
-			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
-		}
-		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "left")) {
-			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
-			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
-		}
-		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "right")) {
+		if (teleporteur_info.position_x == (gp.m_player.getM_x() / (16 * 3))
+				&& teleporteur_info.position_y == gp.m_player.getM_y() / (16 * 3)) {
 			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
 		}
