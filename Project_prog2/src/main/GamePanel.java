@@ -33,8 +33,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREE_ROW; // 576 pixels
 
 	// param�tres du monde :
-	public final int maxWorldCol = 32;
-	public final int maxWorldRow = 24;
+	public final int maxWorldCol = 50;
+	public final int maxWorldRow = 50;
 	public final int worldWidth = TILE_SIZE * maxWorldCol;
 	public final int worldHeight = TILE_SIZE * maxWorldRow;
 	public int bloquer_action = 0;
@@ -53,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
 	TileManager m_tileM;
 	public EventManager eventManagerr = new EventManager(this);
 	public ColisionVerif colisionVerif = new ColisionVerif(this);
+	public boolean win = false;
 
 	/**
 	 * Constructeur
@@ -143,8 +144,8 @@ public class GamePanel extends JPanel implements Runnable {
 		if (m_player.getPvACTUAL() == 0) {
 			m_player.over(g2);
 		} else {
-
-			// DRAW LES TILES
+			if (win == false) {
+				// DRAW LES TILES
 			m_tileM.draw(g2);
 			// DRAW LE PLAYER
 			m_player.draw(g2);
@@ -162,6 +163,8 @@ public class GamePanel extends JPanel implements Runnable {
 			m_tileM.point_rouge(g2, m_player);
 
 			g2.dispose();
+			}
+			else m_player.win(g2);
 		}
 
 	}

@@ -32,27 +32,28 @@ public class ColisionVerif {
 					entity.area_collision.y -= entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						// System.out.print("collision up");
+						if(player == true) { index = i;}
+					//	System.out.print("collision up");
 					}
 				} else if (entity.goDown == true) {
 					entity.area_collision.y += entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						// System.out.print("collision down");
+						if(player == true) { index = i;}
 					}
 
 				} else if (entity.goLeft == true) {
 					entity.area_collision.x -= entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						// System.out.print("collision left");
+						if(player == true) { index = i;}
 					}
 
 				} else if (entity.goRight == true) {
 					entity.area_collision.x += entity.getM_speed();
 					// si il y a une intersection entre les deux area
 					if (entity.area_collision.intersects(gp.objets.get(i).area_collision)) {
-						// System.out.print("collision right");
+						if(player == true) { index = i;}
 					}
 				}
 				// reinitialisation area entite et objet
@@ -65,6 +66,7 @@ public class ColisionVerif {
 			}
 
 		}
+		
 		return index;
 	}
 
@@ -156,9 +158,9 @@ public class ColisionVerif {
 			}
 			return;
 		}
-		// On vérifie si on est en collision avec un obstacle en haut à gauche
+		// On vï¿½rifie si on est en collision avec un obstacle en haut ï¿½ gauche
 		else if (entity.goUp && entity.goLeft) {
-			entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE; // Mettez à jour y_g avec une soustraction
+			entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE; // Mettez ï¿½ jour y_g avec une soustraction
 			entityLeftCol = (x_g - entity.getM_speed()) / gp.TILE_SIZE;
 
 			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
@@ -170,10 +172,10 @@ public class ColisionVerif {
 			return;
 		}
 
-		// On vérifie si on est en collision avec un obstacle en haut à droite
+		// On vï¿½rifie si on est en collision avec un obstacle en haut ï¿½ droite
 		else if (entity.goUp && entity.goRight) {
-			entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE; // Mettez à jour y_g avec une soustraction
-			entityRightCol = (x_d + entity.getM_speed()) / gp.TILE_SIZE; // Mettez à jour x_d avec une addition
+			entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE; // Mettez ï¿½ jour y_g avec une soustraction
+			entityRightCol = (x_d + entity.getM_speed()) / gp.TILE_SIZE; // Mettez ï¿½ jour x_d avec une addition
 			tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
 			tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
 			if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
