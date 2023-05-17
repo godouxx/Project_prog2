@@ -24,7 +24,7 @@ public class Monstre1 extends Entity {
 		this.getMonstre1Image();
 
 		// length de 29 et wiegth de 24 sur l'image
-		this.area_collision = new Rectangle(0, 0, 24, 29);
+		this.area_collision = new Rectangle(0, 0, 29, 24);
 		this.area_collision_x_default = area_collision.x;
 		this.area_collision_y_default = area_collision.y;
 	}
@@ -50,7 +50,7 @@ public class Monstre1 extends Entity {
 
 		Random random = new Random();
 
-		int i = random.nextInt(3);
+		int i = random.nextInt(4);
 //On change de direction toutes les 2 secondes
 		if (m_gp.bloquer_action == 1) {
 
@@ -70,17 +70,17 @@ public class Monstre1 extends Entity {
 				direction = "right";
 			}
 		}
-		
+
 		collision = false;
 		this.m_gp.colisionVerif.checkTileMonster(this);
-		
+
 		if (collision == false) {
 			if (direction == "up") {
 				goUpNext();
-				//System.out.println("up");
+				// System.out.println("up");
 			} else if (direction == "down") {
 				goDownNext();
-				//System.out.println("down");
+				// System.out.println("down");
 			} else if (direction == "left") {
 				goLeftNext();
 				//System.out.println("left");

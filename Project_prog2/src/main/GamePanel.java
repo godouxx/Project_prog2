@@ -48,12 +48,13 @@ public class GamePanel extends JPanel implements Runnable {
 	Thread m_gameThread;
 	public Player m_player;
 	public CreateComponents createComponents = new CreateComponents(this);
-	ArrayList<Entity> monstres;
+	public ArrayList<Entity> monstres;
 	public ArrayList<ObjetsPassifs> objets;
 	TileManager m_tileM;
 	public EventManager eventManagerr = new EventManager(this);
 	public ColisionVerif colisionVerif = new ColisionVerif(this);
 	public boolean win = false;
+	public boolean changeMap = false;
 
 	/**
 	 * Constructeur
@@ -128,10 +129,16 @@ public class GamePanel extends JPanel implements Runnable {
 		bloquer_action++;
 		m_player.update();
 		for (int i = 0; i < monstres.size(); i++) {
-			monstres.get(i).update();
+			if(monstres.get(i)!=null) {
+				monstres.get(i).update();
+			}
+			
 		}
 		if (bloquer_action == 120) {
 			bloquer_action = 0;
+		}
+		if (changeMap == true) {
+			m_tileM.map2();
 		}
 	}
 
