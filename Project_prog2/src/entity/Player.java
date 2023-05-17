@@ -147,6 +147,11 @@ public class Player extends Entity {
 	 */
 	@Override
 	public void update() {
+		
+		if (m_gp.changeMap ==false) {
+			m_gp.eventManagerr.checkEvent();
+		}
+		else m_gp.eventManagerr.checkEvent2();
 
 		for (int element : m_keyH.liste) {
 
@@ -233,7 +238,7 @@ public class Player extends Entity {
 
 		}
 
-		m_gp.eventManagerr.checkEvent();
+
 
 		goUp = false;
 		goDown = false;

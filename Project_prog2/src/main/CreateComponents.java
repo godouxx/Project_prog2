@@ -58,8 +58,6 @@ public class CreateComponents {
 		gp.objets.add(new Obstacles(gp.TILE_SIZE * 27, gp.TILE_SIZE * 26));
 		gp.objets.add(new Obstacles(gp.TILE_SIZE * 21, gp.TILE_SIZE * 27));
 
-		gp.objets.add(new Door(gp.TILE_SIZE * 25, gp.TILE_SIZE * 25));
-
 		gp.objets.add(new Nourriture(2, gp.TILE_SIZE * 12, gp.TILE_SIZE * 5));
 		gp.objets.add(new Nourriture(2, gp.TILE_SIZE * 39, gp.TILE_SIZE * 40));
 		gp.objets.add(new Nourriture(2, gp.TILE_SIZE * 29, gp.TILE_SIZE * 5));

@@ -48,13 +48,6 @@ public class EventManager {
 			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
 			gp.changeMap = true;
 		}
-
-		if (door_info2.position_x == (gp.m_player.getM_x() / (16 * 3))
-				&& door_info2.position_y == gp.m_player.getM_y() / (16 * 3)) {
-			gp.m_player.setM_x(gp.TILE_SIZE * door_info2.destination_x);
-			gp.m_player.setM_y(gp.TILE_SIZE * door_info2.destination_y);
-			gp.win = true;
-		}
 	}
 
 	public void checkEvent2() {
@@ -62,6 +55,7 @@ public class EventManager {
 				&& door_info2.position_y == gp.m_player.getM_y() / (16 * 3)) {
 			gp.m_player.setM_x(gp.TILE_SIZE * door_info2.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * door_info2.destination_y);
+			gp.win = true;
 		}
 	}
 
