@@ -6,6 +6,7 @@ import door.door_info2;
 import entity.Monstre1;
 import objetspassifs.Armes;
 import objetspassifs.Door;
+import objetspassifs.Door2;
 import objetspassifs.Nourriture;
 import objetspassifs.Obstacles;
 import objetspassifs.Speed;
@@ -21,7 +22,7 @@ public class CreateComponents2 {
 	}
 
 	public void setObjetsPassifs() {
-		gp.objets.add(new Door(gp.TILE_SIZE * door_info2.position_x, gp.TILE_SIZE * door_info2.position_y));
+		gp.objets.add(new Door2(gp.TILE_SIZE * door_info2.position_x, gp.TILE_SIZE * door_info2.position_y));
 //		gp.objets.add(new Armes(armes_infos.damage, gp.TILE_SIZE * armes_infos.position_x,
 //				gp.TILE_SIZE * armes_infos.position_y));
 //		gp.objets.add(new Obstacles(gp.TILE_SIZE * 4, gp.TILE_SIZE * 4));

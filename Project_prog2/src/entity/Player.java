@@ -81,7 +81,7 @@ public class Player extends Entity {
 	public void getPlayerImage() {
 		// gestion des expections
 		try {
-			m_idleImage = ImageIO.read(getClass().getResource("/Player/sans_epee.png"));
+			m_idleImage = ImageIO.read(getClass().getResource("/Player/sans_epee_nouveau.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
