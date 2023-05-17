@@ -33,8 +33,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREE_ROW; // 576 pixels
 
 	// param�tres du monde :
-	public final int maxWorldCol = 32;
-	public final int maxWorldRow = 24;
+	public final int maxWorldCol = 50;
+	public final int maxWorldRow = 50;
 	public final int worldWidth = TILE_SIZE * maxWorldCol;
 	public final int worldHeight = TILE_SIZE * maxWorldRow;
 	public int bloquer_action = 0;
