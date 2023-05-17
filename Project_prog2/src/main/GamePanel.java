@@ -48,13 +48,16 @@ public class GamePanel extends JPanel implements Runnable {
 	Thread m_gameThread;
 	public Player m_player;
 	public CreateComponents createComponents = new CreateComponents(this);
-	public ArrayList<Entity> monstres;
+	public CreateComponents2 createComponents2 = new CreateComponents2(this);
+	ArrayList<Entity> monstres;
+
 	public ArrayList<ObjetsPassifs> objets;
 	TileManager m_tileM;
 	public EventManager eventManagerr = new EventManager(this);
 	public ColisionVerif colisionVerif = new ColisionVerif(this);
 	public boolean win = false;
 	public boolean changeMap = false;
+	int cpt=0;
 
 	/**
 	 * Constructeur
@@ -78,6 +81,16 @@ public class GamePanel extends JPanel implements Runnable {
 	public void setupGame() {
 		createComponents.setObjetsPassifs();
 		createComponents.setMonsters();
+	}
+	
+	public void setupGame2() {
+		if(cpt==0) {
+		createComponents.gp.objets.clear();
+		createComponents.gp.monstres.clear();
+		createComponents2.setObjetsPassifs();
+		createComponents2.setMonsters();
+		}
+
 	}
 
 	/**
@@ -139,6 +152,8 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 		if (changeMap == true) {
 			m_tileM.map2();
+			setupGame2();
+			cpt++;
 		}
 	}
 

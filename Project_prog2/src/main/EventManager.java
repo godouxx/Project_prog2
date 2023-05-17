@@ -3,6 +3,7 @@ package main;
 import java.awt.Rectangle;
 
 import door.door_info;
+import door.door_info2;
 import teleporteur.teleporteur_info;
 
 public class EventManager {
@@ -22,9 +23,6 @@ public class EventManager {
 	public void checkEvent() {
 		// permet de cr�er un pi�ge si on est sur la 4�me ligne 5�me colonne on peut
 		// changer les PV par exemple
-		if (hit(4, 5, "right") == true) {
-			gp.m_player.setPvACTUAL(0);
-		}
 		// permet de faire une t�l�portation
 		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "up")) {
 			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
@@ -47,6 +45,19 @@ public class EventManager {
 			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
 			gp.changeMap = true;
+		}
+		
+		if (door_info2.position_x == (gp.m_player.getM_x()/(16*3)) && door_info2.position_y == gp.m_player.getM_y()/(16*3)) {
+			gp.m_player.setM_x(gp.TILE_SIZE * door_info2.destination_x);
+			gp.m_player.setM_y(gp.TILE_SIZE * door_info2.destination_y);
+			gp.changeMap = true;
+		}
+	}
+	
+	public void checkEvent2() {	
+		if (door_info2.position_x == (gp.m_player.getM_x()/(16*3)) && door_info2.position_y == gp.m_player.getM_y()/(16*3)) {
+			gp.m_player.setM_x(gp.TILE_SIZE * door_info2.destination_x);
+			gp.m_player.setM_y(gp.TILE_SIZE * door_info2.destination_y);
 		}
 	}
 
