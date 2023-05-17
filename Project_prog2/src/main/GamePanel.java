@@ -145,13 +145,13 @@ public class GamePanel extends JPanel implements Runnable {
 		bloquer_action++;
 		m_player.update();
 		for (int i = 0; i < monstres1.size(); i++) {
-			if (monstres1.get(i) != null&&!changeMap) {
+			if (monstres1.get(i) != null) {
 				monstres1.get(i).update();
 			}
 
 		}
 		for (int i = 0; i < monstres2.size(); i++) {
-			if (monstres2.get(i) != null&&!changeMap) {
+			if (monstres2.get(i) != null) {
 				monstres2.get(i).update();
 			}
 		}

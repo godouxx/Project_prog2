@@ -42,6 +42,8 @@ public class EventManager {
 	}
 
 	public void checkEvent2() {
+		System.out.println(gp.m_player.getM_x() / (16 * 3));
+		System.out.println(gp.m_player.getM_y() / (16 * 3));
 		if (door_info2.position_x == (gp.m_player.getM_x() / (16 * 3))
 				&& door_info2.position_y == gp.m_player.getM_y() / (16 * 3)) {
 			gp.m_player.setM_x(gp.TILE_SIZE * door_info2.destination_x);

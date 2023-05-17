@@ -23,6 +23,7 @@ public class Monstre1 extends Entity {
 		this.setDefaultValues();
 		this.getMonstre1Image();
 		this.setDegat(2);
+		this.direction="up";
 		// length de 29 et wiegth de 24 sur l'image
 		this.area_collision = new Rectangle(0, 0, 29, 24);
 		this.area_collision_x_default = area_collision.x;
