@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Rectangle;
 
+import door.door_info;
 import teleporteur.teleporteur_info;
 
 public class EventManager {
@@ -40,6 +41,23 @@ public class EventManager {
 		if (hit(teleporteur_info.position_x, teleporteur_info.position_y, "right")) {
 			gp.m_player.setM_x(gp.TILE_SIZE * teleporteur_info.destination_x);
 			gp.m_player.setM_y(gp.TILE_SIZE * teleporteur_info.destination_y);
+		}
+		
+		if (hit(door_info.position_x, door_info.position_y, "up")) {
+			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
+			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
+		}
+		if (hit(door_info.position_x, door_info.position_y, "down")) {
+			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
+			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
+		}
+		if (hit(door_info.position_x, door_info.position_y, "left") == true) {
+			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
+			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
+		}
+		if (hit(door_info.position_x, door_info.position_y, "right")) {
+			gp.m_player.setM_x(gp.TILE_SIZE * door_info.destination_x);
+			gp.m_player.setM_y(gp.TILE_SIZE * door_info.destination_y);
 		}
 	}
 
