@@ -77,16 +77,16 @@ public class Monstre1 extends Entity {
 		if (collision == false) {
 			if (direction == "up") {
 				goUpNext();
-				System.out.println("up");
+				//System.out.println("up");
 			} else if (direction == "down") {
 				goDownNext();
-				System.out.println("down");
+				//System.out.println("down");
 			} else if (direction == "left") {
 				goLeftNext();
-				System.out.println("left");
+				//System.out.println("left");
 			} else if (direction == "right") {
 				goRightNext();
-				System.out.println("right");
+				//System.out.println("right");
 			}
 		}
 

@@ -84,13 +84,13 @@ public class ColisionVerif {
 	    int tile1, tile2;
 
 	    if (entity.direction.equals("up")) {
-	        System.out.println("collision vers le haut");
+	       
 	        entityTopRow = (y_g - entity.getM_speed()) / gp.TILE_SIZE;
 	        tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityTopRow];
 	        tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityTopRow];
 	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
 	            entity.collision = true;
-	            System.out.println("collision vers le haut");
+	        
 	        }
 	    } else if (entity.direction.equals("right")) {
 	        entityRightCol = (x_d + entity.getM_speed()) / gp.TILE_SIZE;
@@ -98,7 +98,7 @@ public class ColisionVerif {
 	        tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
 	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
 	            entity.collision = true;
-	            System.out.println("collision vers la droite");
+	           
 	        }
 	    } else if (entity.direction.equals("left")) {
 	        entityLeftCol = (x_g - entity.getM_speed()) / gp.TILE_SIZE;
@@ -106,14 +106,14 @@ public class ColisionVerif {
 	        tile2 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
 	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
 	            entity.collision = true;
-	            System.out.println("collision vers la gauche");
+	        
 	        }
 	    } else if (entity.direction.equals("down")) {
 	        entityBottomRow = (y_d + entity.getM_speed()) / gp.TILE_SIZE;
 	        tile1 = gp.m_tileM.m_mapTileNum[entityLeftCol][entityBottomRow];
 	        tile2 = gp.m_tileM.m_mapTileNum[entityRightCol][entityBottomRow];
 	        if (gp.m_tileM.m_tile[tile1].m_collision || gp.m_tileM.m_tile[tile2].m_collision) {
-	            System.out.println("collision vers le bas");
+	           
 	            entity.collision = true;
 	        }
 	    }
