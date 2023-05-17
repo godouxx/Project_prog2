@@ -34,8 +34,10 @@ public class Player extends Entity {
 	BufferedImage game_over;
 	BufferedImage succes;
 	BufferedImage avec_epee;
+	BufferedImage attack;
 	boolean epee = false;
-
+	public Rectangle area_epee = new Rectangle(0, 0, 40, 40);
+	boolean attacking = false;
 	public final int screenX;
 	public final int screenY;
 
@@ -84,7 +86,7 @@ public class Player extends Entity {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void getPlayerImage_epee() {
 		// gestion des expections
 		try {
@@ -93,7 +95,15 @@ public class Player extends Entity {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void getPlayerImage_attack() {
+		// gestion des expections
+		try {
+			avec_epee = ImageIO.read(getClass().getResource("/Player/avec_epee.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void getHeartImage() {
 		try {
@@ -157,6 +167,10 @@ public class Player extends Entity {
 				goRight = true;
 				direction = "right";
 			}
+
+			if (element == 32) {
+				attacking = true;
+			}
 		}
 
 		// boucle pour ne pas perdre toute la vie d'un coup contre un monstre
@@ -167,18 +181,22 @@ public class Player extends Entity {
 				invincibleCompteur = 0;
 			}
 		}
+//ATTACK
+		if (attacking == true) {
+
+		}
 
 		collision = false;
 		this.m_gp.colisionVerif.checkTile(this);
 		int index = this.m_gp.colisionVerif.checkObjet(this, true);
 		prendreObjet(index);
 		boolean contactMonstre = m_gp.colisionVerif.checkPlayerMonstre(this, m_gp.monstres);
-		
+
 		if (contactMonstre) {
-		
+
 			this.takeDamage(2);
 		}
-		
+
 		if (collision == false) {
 
 			// D�placement diagonal
@@ -219,7 +237,7 @@ public class Player extends Entity {
 		goLeft = false;
 		goRight = false;
 	}
-	
+
 	public void prendreObjet(int index) {
 
         if (index != 999 && index >= 0) { // si l'index est != de 999 cela signifie que l'on a toucher un objet
@@ -261,6 +279,15 @@ public class Player extends Entity {
             // m_gp.objets.set(index, rechange);
         }
     }
+
+	//On met � jour l'area de notre rectangle pour qu'elle corresponde � l'area o� on se situe
+	public void attacking() {
+		if(direction=="up") {
+			area_epee.x=m_x+m_gp.TILE_SIZE;
+			
+		}
+		
+	}
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;
