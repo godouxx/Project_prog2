@@ -41,7 +41,7 @@ public class TileManager {
 	}
 	
 	public void map2() {
-		loadMap("/maps/ma2.txt");
+		loadMap("/maps/map2.txt");
 	}
 	
 	public void getMiniMap() {

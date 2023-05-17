@@ -237,11 +237,8 @@ public class Player extends Entity {
 			//m_gp.objets.set(index, rechange);
 		}
 	}
-<<<<<<< HEAD
  
 	
-=======
->>>>>>> branch 'master' of https://github.com/godouxx/Project_prog2.git
 
 	public void goUpLeftNext() {
 		this.m_y -= Math.sqrt(2) / 2 * m_speed;
