@@ -68,6 +68,8 @@ public class CreateComponents {
 
 		gp.objets.add(new Speed(3, gp.TILE_SIZE * 2, gp.TILE_SIZE * 8));
 		gp.objets.add(new Speed(3, gp.TILE_SIZE * 48, gp.TILE_SIZE * 48));
+		gp.objets.add(new Speed(3, gp.TILE_SIZE * 46, gp.TILE_SIZE * 13));
+
 
 	}
 
@@ -75,7 +77,11 @@ public class CreateComponents {
 		gp.monstres1.add(new Monstre1(gp, gp.TILE_SIZE * 2, gp.TILE_SIZE * 5));
 		gp.monstres1.add(new Monstre1(gp, gp.TILE_SIZE * 10, gp.TILE_SIZE * 40));
 		gp.monstres1.add(new Monstre1(gp, gp.TILE_SIZE * 25, gp.TILE_SIZE * 25));
-		gp.monstres2.add(new Monstre2(gp, gp.TILE_SIZE * 2, gp.TILE_SIZE * 35));
+		gp.monstres2.add(new Monstre2(gp, gp.TILE_SIZE * 33, gp.TILE_SIZE * 45));
+		gp.monstres2.add(new Monstre2(gp, gp.TILE_SIZE * 44, gp.TILE_SIZE * 47));
+		gp.monstres2.add(new Monstre2(gp, gp.TILE_SIZE * 23, gp.TILE_SIZE * 25));
+		gp.monstres2.add(new Monstre1(gp, gp.TILE_SIZE * 23, gp.TILE_SIZE * 35));
+		gp.monstres2.add(new Monstre1(gp, gp.TILE_SIZE * 23, gp.TILE_SIZE * 45));
 //		gp.monstres.add(new Monstre1(gp, gp.TILE_SIZE*8, gp.TILE_SIZE*4));
 //		gp.monstres.add(new Monstre1(gp, gp.TILE_SIZE*8, gp.TILE_SIZE*4));
 //		gp.monstres.add(new Monstre1(gp, gp.TILE_SIZE*8, gp.TILE_SIZE*4));
